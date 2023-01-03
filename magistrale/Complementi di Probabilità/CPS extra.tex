@@ -1,0 +1,172 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\graphicspath{ {C:/Users/barba/OneDrive/Immagini/Screenshot} }
+\begin{document}
+\section*{Probabilità di Dirac}
+Per un certo $\omega_{0} \in \Omega$, la funzione $P_{0}: \mathcal{E} \to \mathbb{R}_{+}$ data da:
+\[ P_{0}(E) :=
+\begin{cases}
+1 \; \; \; \; se \; \omega_{0} \in E\\
+0 \; \; \; \; se \; \omega_{0} \notin E
+\end{cases}
+\]
+è una probabilità finitamente additiva su $\Omega$ tale che $P_{0}(\omega_{0}) = 1$.\\
+\\
+Verifichiamo che si tratti effettivamente di una probabilità, e consideriamo due eventi $E, F \in \mathcal{E}$ tali che $E \cap F = \emptyset$. Sono possibili solo due casi:
+\begin{itemize}
+\item $\omega_{0} \in E \cup F \implies P_{0}(E \cup F) = 1$\\
+D'altra parte, poiché E, F sono incompatibili, $\omega_{0}$ deve appartenere o a E o a F. Ciò implica $P_{0}(E)+P_{0}(F)=1$.
+\item $\omega_{0} \notin E \cup F \implies P_{0}(E \cup F) = 0$\\
+D'altra parte, $\omega_{0}$ non può appartenere né a E né a F. Ciò implica\\
+$P_{0}(E)+P_{0}(F)=0$.
+\end{itemize}
+Di conseguenza, in entrambi i casi abbiamo:
+\[ P_{0}(E \cup F) = P_{0}(E)+P_{0}(F) \]
+
+\section*{Probabilità di Bernoulli}
+Assumiamo che il sample space $\Omega$ contenga due sample point ($\omega_{0}, \omega_{1}$). Siano $p \in (0,1)$ e $q \equiv 1-p$. Allora la funzione $P: \mathcal{P}(\Omega) \to \mathbb{R}_{+}$ data da:
+\[ P(E) :=
+\begin{cases}
+1 \; \; \; \; se \; \omega_{0} \in E \; \wedge \; \omega_{1} \in E\\
+p \; \; \; \; se \; \omega_{0} \notin E \; \wedge \; \omega_{1} \in E\\
+q \; \; \; \; se \; \omega_{0} \in E \; \wedge \; \omega_{1} \notin E\\
+0 \; \; \; \; se \; \omega_{0} \notin E \; \wedge \; \omega_{1} \notin E
+\end{cases}
+\]
+è una probabilità finitamente additiva su $\Omega$ tale che $P(\omega_{1}) = p$ e $P(\omega_{0}) = q$.\\
+\\
+Verifichiamo che si tratti effettivamente di una probabilità, e consideriamo due eventi $E, F \in \mathcal{E}$ tali che $E \cap F = \emptyset$. Se poniamo attenzione sul solo evento E, sono possibili 4 casi:
+\begin{itemize}
+\item $\omega_{0} \in E \; \wedge \; \omega_{1} \in E \implies \omega_{0},\omega_{1} \in E \cup F \; \wedge \; \omega_{0},\omega_{1} \notin F \implies$
+\[ P(E) = 1, \; \; \; P(F) = 0, \; \; \; P(E \cup F) = 1 \]
+\item $\omega_{0} \in E \; \wedge \; \omega_{1} \notin E \implies$ abbiamo 2 sottocasi:
+\begin{itemize}
+\item $\omega_{1} \in F \implies \omega_{0},\omega_{1} \in E \cup F \implies$
+\[ P(E) = q, \; \; \; P(F) = p, \; \; \; P(E \cup F) = 1 \]
+\item $\omega_{1} \notin F \implies \omega_{0} \in E \cup F \; \wedge \; \omega_{1} \notin E \cup F \implies$
+\[ P(E) = q, \; \; \; P(F) = 0, \; \; \; P(E \cup F) = q \]
+\end{itemize}
+\item $\omega_{0} \notin E \; \wedge \; \omega_{1} \in E$; si tratta di un caso del tutto analogo al precedente.
+\item $\omega_{0} \notin E \; \wedge \; \omega_{1} \notin E \implies$ abbiamo 4 sottocasi:
+\begin{itemize}
+\item $\omega_{0} \in F \; \wedge \; \omega_{1} \in F \implies \omega_{0},\omega_{1} \in E \cup F \implies$
+\[ P(E) = 0, \; \; \; P(F) = 1, \; \; \; P(E \cup F) = 1 \]
+\item $\omega_{0} \in F \; \wedge \; \omega_{1} \notin F \implies \omega_{0} \in E \cup F \; \wedge \; \omega_{1} \notin E \cup F \implies$
+\[ P(E) = 0, \; \; \; P(F) = q, \; \; \; P(E \cup F) = q \]
+\item $\omega_{0} \notin F \; \wedge \; \omega_{1} \in F \implies \omega_{0} \notin E \cup F \; \wedge \; \omega_{1} \in E \cup F \implies$
+\[ P(E) = 0, \; \; \; P(F) = p, \; \; \; P(E \cup F) = p \]
+\item $\omega_{0} \notin F \; \wedge \; \omega_{1} \notin F \implies \omega_{0},\omega_{1} \notin E \cup F \implies$
+\[ P(E) = 0, \; \; \; P(F) = 0, \; \; \; P(E \cup F) = 0 \]
+\end{itemize}
+\end{itemize}
+In definitiva, in tutti i casi abbiamo:
+\[ P(E \cup F) = P(E)+P(F) \]
+
+\section*{Probabilità discreta uniforme}
+Assumiamo che il sample space $\Omega$ contenga un numero finito di sample point ($\Omega \equiv \{\omega_{1},..,\omega_{n}\}$ per qualche $n \in \mathbb{N}$). Sia $P_{k}: \mathcal{P}(\Omega) \to \mathbb{R}_{+}$ la probabilità di Dirac concentrata in $\omega_{k}$, per $k=1,...,n$. Allora la funzione $P: \mathcal{P}(\Omega) \to \mathbb{R}_{+}$ data da:
+\[ P(E) := \frac{1}{n} \sum_{k=1}^{n}P_{k}(E) \]
+è una probabilità finitamente additiva su $\Omega$ tale che $P(\omega_{k}) = \frac{1}{n} \; \; \forall k=1,...,n$.\\
+\\
+Verifichiamo che si tratti effettivamente di una probabilità. Poiché $P_{k}$ è una probabilità, per ogni $k=1,...,n$ abbiamo:
+\[ P(\Omega) = \frac{1}{n} \sum_{k=1}^{n}P_{k}(\Omega) = \frac{1}{n} \sum_{k=1}^{n}1 = \frac{1}{n} \cdot n = 1 \]
+Inoltre, grazie alle proprietà delle somme finite:
+\[ P(E \cup F) = \frac{1}{n} \sum_{k=1}^{n}P_{k}(E \cup F) = \frac{1}{n} \sum_{k=1}^{n}(P_{k}(E) + P_{k}(F)) = \frac{1}{n} \sum_{k=1}^{n}P_{k}(E) + \frac{1}{n} \sum_{k=1}^{n}P_{k}(F) = P(E)+P(F) \]
+per ogni coppia di eventi $E,F \in \mathcal{P}(\Omega)$ tali che $E \cap F = \emptyset$.
+
+\section*{Probabilità binomiale}
+Assumiamo che il sample space $\Omega$ contenga un numero finito di sample point ($\Omega \equiv \{\omega_{0},\omega_{1},..,\omega_{n}\}$ per qualche $n \in \mathbb{N}$). Siano $p \in (0,1)$ e $q \equiv 1-p$. Allora la funzione $P: \mathcal{P}(\Omega) \to \mathbb{R}_{+}$ data da:
+\[ P(E) := \sum_{\{k\in \{0,1,...,n\}: \omega_{k}\in E\}}^{}\binom{n}{k}p^{k}q^{n-k} \]
+è una probabilità finitamente additiva su $\Omega$ tale che $P(\omega_{k}) = \binom{n}{k}p^{k}q^{n-k}$\\
+$\forall k=0,1,...,n$.\\
+\\
+Verifichiamo che si tratti effettivamente di una probabilità. Considerando la formula del binomio di Newton, otteniamo:
+\[ P(\Omega) = \sum_{\{k\in \{0,1,...,n\}: \omega_{k}\in \Omega\}}^{}\binom{n}{k}p^{k}q^{n-k} = \sum_{k=0}^{n}\binom{n}{k}p^{k}q^{n-k} = (p+q)^{n} = 1 \]
+Ora, dati $E,F \in \mathcal{P}(\Omega)$ tali che $E \cap F = \emptyset$, abbiamo:
+\[ \{k \in \{0,1,...,n\}: \omega_{k} \in E \} \cap \{k \in \{0,1,...,n\}: \omega_{k} \in F \} = \emptyset \]
+\[ \{k \in \{0,1,...,n\}: \omega_{k} \in E \cup F \} = \{k \in \{0,1,...,n\}: \omega_{k} \in E \} \cup \{k \in \{0,1,...,n\}: \omega_{k} \in F \} \]
+Di conseguenza otteniamo:
+\[ P(E \cup F) = \sum_{\{k\in \{0,1,...,n\}: \omega_{k}\in E \cup F\}}^{}\binom{n}{k}p^{k}q^{n-k} = \sum_{\{k\in \{0,1,...,n\}: \omega_{k}\in E\} \cup \{k\in \{0,1,...,n\}: \omega_{k}\in F\}}^{}\binom{n}{k}p^{k}q^{n-k} = \]
+\[ \sum_{\{k\in \{0,1,...,n\}: \omega_{k}\in E\}}^{}\binom{n}{k}p^{k}q^{n-k} \; + \sum_{\{k\in \{0,1,...,n\}: \omega_{k}\in F\}}^{}\binom{n}{k}p^{k}q^{n-k} = P(E)+P(F) \]
+
+\section*{Proposizione}
+\[ \int_{\Omega}^{} ||X||_{2} \; dP \; < +\infty \iff \int_{\Omega}^{}|X_{n}| \; dP \; < +\infty \; \; \; \; \forall n = 1,...,N \]
+
+\subsection*{Dimostrazione}
+$\Rightarrow) \; |X_{n}| = (X_{n}^{2})^{\frac{1}{2}} \leq \Big( \sum_{n=1}^{N}X_{n}^{2} \Big)^{\frac{1}{2}} = ||X||_{2} \; \; \; \; \forall n=1,...,N$\\
+$\Leftarrow) \; ||X||_{2} = \Big( \sum_{n=1}^{N}X_{n}^{2} \Big)^{\frac{1}{2}} \leq \sum_{n=1}^{N}|X_{n}|$\\
+(Questo perché se elevo $\Big( \sum_{n=1}^{N}X_{n}^{2} \Big)^{\frac{1}{2}}$ al quadrato ottengo la somma dei quadrati, mentre se elevo $\sum_{n=1}^{N}|X_{n}|$ al quadrato ottengo la somma dei quadrati e i doppi prodotti).
+
+\section*{Proposizione}
+\[ \int_{\Omega}^{} ||X||_{2}^{2} \; dP \; < +\infty \iff \int_{\Omega}^{}|X_{m}X_{n}| \; dP \; < +\infty \; \; \; \; \forall m,n = 1,...,N \]
+
+\subsection*{Dimostrazione}
+$\Rightarrow) \;  (X_{n}^{2}) \leq \sum_{n=1}^{N}X_{n}^{2} = ||X||_{2}^{2} \; \; \; \; \forall n=1,...,N \; \implies$\\
+Assumendo che $||X||_{2}^{2}$ sia integrabile su $\Omega$, tutte le componenti $X_{1},...,X_{N}$ di X hanno momento di ordine 2 finito $\implies$\\
+Per la disuguaglianza di Cauchy-Schwarz ($\mathbb{E}[|XY|] \leq \mathbb{E}[X^{2}]^{\frac{1}{2}} \mathbb{E}[Y^{2}]^{\frac{1}{2}}$), tutti i prodotti $X_{m}X_{n}$ hanno momento di ordine 1 finito $\forall m,n=1,...,N$.\\
+$\Leftarrow) \;$ Se tutti i prodotti $X_{m}X_{n}$, al variare di $m,n = 1,...,N$, hanno momenti di ordine 1 finito $\implies$\\
+Tutti i quadrati $X_{1}^{2},...,X_{N}^{2}$ hanno momento di ordine 1 finito $\implies$\\
+$||X||_{2}^{2}$ ha momento di ordine 1 finito.
+
+\section*{Proposizione}
+\[ \textbf{MSE}(\hat{\theta}_{n}) = \mathbb{D}^{2}[\hat{\theta}_{n}] + \textbf{Bias}^{2}(\hat{\theta}_{n}) \]
+
+\subsection*{Dimostrazione}
+$\textbf{MSE}(\hat{\theta}_{n}) = \mathbb{E}[(\hat{\theta}_{n} - \theta)^{2}] = \mathbb{E}[(\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}] + \mathbb{E}[\hat{\theta}_{n}] - \theta)^{2}] =$\\
+$=\mathbb{E}[(\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}])^{2} + 2(\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}])(\mathbb{E}[\hat{\theta}_{n}] - \theta) + (\mathbb{E}[\hat{\theta}_{n}] - \theta)^{2}] =$\\
+$=\mathbb{E}[([\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}])^{2}] + 2\mathbb{E}[(\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}])(\mathbb{E}[\hat{\theta}_{n}] - \theta)] + \mathbb{E}[(\mathbb{E}[\hat{\theta}_{n}] - \theta)^{2}]$\\
+\\
+Ora, poiché $\theta$ e $\mathbb{E}[\hat{\theta}_{n}]$ sono numeri reali, abbiamo che:
+\[ \mathbb{E}[(\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}])(\mathbb{E}[\hat{\theta}_{n}] - \theta)] = (\mathbb{E}[\hat{\theta}_{n}] - \theta)\mathbb{E}[\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}]] = (\mathbb{E}[\hat{\theta}_{n}] - \theta)(\mathbb{E}[\hat{\theta}_{n}] - \mathbb{E}[\hat{\theta}_{n}]) = 0 \]
+\[ \mathbb{E}[(\mathbb{E}[\hat{\theta}_{n}] - \theta)^{2}] = (\mathbb{E}[\hat{\theta}_{n}] - \theta)^{2} \]
+In definitiva:\\
+$\textbf{MSE}(\hat{\theta}_{n}) = \mathbb{E}[([\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}])^{2}] + (\mathbb{E}[\hat{\theta}_{n}] - \theta)^{2} = \mathbb{D}^{2}[\hat{\theta}_{n}] + \textbf{Bias}^{2}(\hat{\theta}_{n})$
+
+\section*{Proposizione}
+Se uno stimatore $\hat{\theta}_{n}$ corretto ($\equiv$ non distorto) di $\theta$ è consistente in media quadratica, allora è consistente anche in probabilità.
+
+\subsection*{Dimostrazione}
+Poiché lo stimatore è corretto, applicando la disuguaglianza di Tchebyshev, possiamo scrivere:
+\[ P(|\hat{\theta}_{n} - \theta| \geq \epsilon) = P(|\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}]| \geq \epsilon) \leq \frac{1}{\epsilon^{2}}\mathbb{E}[(\hat{\theta}_{n} - \mathbb{E}[\hat{\theta}_{n}])^{2}] = \frac{1}{\epsilon^{2}}\mathbb{E}[(\hat{\theta}_{n} - \theta)^{2}] \]
+Di conseguenza, dalla convergenza di $\hat{\theta}_{n}$ a $\theta$ in media quadratica segue la convergenza di $\hat{\theta}_{n}$ a $\theta$ in probabilità.
+
+\section*{Proposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ nota. Allora, fissato $\alpha \in (0,1)$, un intervallo di confidenza al livello di confidenza $1-\alpha$ per il valore vero del parametro $\mu$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{n} - z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{n} + z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}} \]
+dove $z_{\frac{\alpha}{2}} \equiv  z_{\frac{\alpha}{2}}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria gaussiana.\\
+Le realizzazioni di tale intervallo di confidenza sono della forma
+\[ \Big( \overline{x}_{n} - z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}} \; \; \; , \; \; \; \overline{x}_{n} + z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}} \Big) \]
+dove $\overline{x}_{n}$ è il valore preso dallo stimatore $\overline{X}_{n}$ su qualunque delle realizzazioni possibili $x_{1},...,x_{n}$ del campione $X_{1},...,X_{n}$.
+
+\subsection*{Dimostrazione}
+Poiché X è una variabile aleatoria gaussiana con media $\mu$ e varianza $\sigma^{2}$, la statistica $\overline{X}_{n}$ è a sua volta una variabile aleatoria gaussiana con media $\mu$ e varianza $\frac{\sigma^{2}}{n}$. Di conseguenza, $\frac{\overline{X}_{n} - \mu}{\frac{\sigma}{\sqrt{n}}}$ è una variabile aleatoria gaussiana standard.\\
+Considerando i valori critici superiore e inferiore di livello $\frac{\alpha}{2}$ della distribuzione gaussiana standard, abbiamo:
+\[ P\Bigg( z_{\frac{\alpha}{2}}^{-} \leq \frac{\overline{X}_{n} - \mu}{\frac{\sigma}{\sqrt{n}}} \leq z_{\frac{\alpha}{2}}^{+} \Bigg) \geq 1-\alpha \]
+D'altra parte:\\ \\
+$z_{\frac{\alpha}{2}}^{-} \leq \frac{\overline{X}_{n} - \mu}{\frac{\sigma}{\sqrt{n}}} \leq z_{\frac{\alpha}{2}}^{+} \iff z_{\frac{\alpha}{2}}^{-}\frac{\sigma}{\sqrt{n}} \leq \overline{X}_{n} - \mu \leq z_{\frac{\alpha}{2}}^{+}\frac{\sigma}{\sqrt{n}} \iff$\\ \\
+$-\overline{X}_{n}+z_{\frac{\alpha}{2}}^{-}\frac{\sigma}{\sqrt{n}} \leq -\mu \leq -\overline{X}_{n}+z_{\frac{\alpha}{2}}^{+}\frac{\sigma}{\sqrt{n}} \iff \overline{X}_{n}-z_{\frac{\alpha}{2}}^{+}\frac{\sigma}{\sqrt{n}} \leq \mu \leq \overline{X}_{n}-z_{\frac{\alpha}{2}}^{-}\frac{\sigma}{\sqrt{n}}$\\
+\\
+Di conseguenza, abbiamo che:
+\[ P\Big( \overline{X}_{n}-z_{\frac{\alpha}{2}}^{+}\frac{\sigma}{\sqrt{n}} \leq \mu \leq \overline{X}_{n}-z_{\frac{\alpha}{2}}^{-}\frac{\sigma}{\sqrt{n}} \Big) \geq 1-\alpha \]
+Perciò, le statistiche $\overline{X}_{n}-z_{\frac{\alpha}{2}}^{+}\frac{\sigma}{\sqrt{n}}$ e $\overline{X}_{n}-z_{\frac{\alpha}{2}}^{-}\frac{\sigma}{\sqrt{n}}$ costituiscono un intervallo di confidenza per il parametro $\mu$ al livello di confidenza $1-\alpha$.\\
+Se ricordiamo che $z_{\frac{\alpha}{2}}^{-} = -z_{\frac{\alpha}{2}}^{+}$ e poniamo $z_{\frac{\alpha}{2}} := z_{\frac{\alpha}{2}}^{+}$, la dimostrazione si conclude.
+
+\section*{Proposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ ignota. Allora, fissato $\alpha \in (0,1)$, un intervallo di confidenza al livello di confidenza $1-\alpha$ per il valore vero di $\sigma^{2}$ è dato dalle seguenti statistiche:
+\[ \frac{(n-1)S_{X,n}^{2}}{\chi_{n-1,\frac{\alpha}{2},+}^{2}} \; \; \; \; ; \; \; \; \; \frac{(n-1)S_{X,n}^{2}}{\chi_{n-1,\frac{\alpha}{2},-}^{2}} \]
+dove $\chi_{n-1,\frac{\alpha}{2},-}$ è il valore critico inferiore di livello $\frac{\alpha}{2}$ e $\chi_{n-1,\frac{\alpha}{2},+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria gaussiana.\\
+Le realizzazioni di tale intervallo di confidenza sono della forma
+\[ \Bigg( \frac{(n-1)s_{n}^{2}(X)}{\chi_{n-1,\frac{\alpha}{2},+}^{2}} \; \; \; , \; \; \; \frac{(n-1)s_{n}^{2}(X)}{\chi_{n-1,\frac{\alpha}{2},-}^{2}} \Bigg) \]
+dove $s_{n}^{2}(X)$ è il valore preso dallo stimatore $S_{X,n}^{2}$ su qualunque delle realizzazioni possibili $x_{1},...,x_{n}$ del campione $X_{1},...,X_{n}$.
+
+\subsection*{Dimostrazione}
+Poiché X è una variabile aleatoria gaussiana con varianza $\sigma^{2}$, la statistica $\frac{(n-1)S_{X,n}^{2}}{\sigma^{2}}$ ha una distribuzione $\chi_{n-1}^{2}$.\\
+Abbiamo inoltre che il valore critico inferiore $\chi_{n-1,\alpha,-}^{2}$ di livello $\alpha$ della variabile aleatoria $\chi_{n-1}^{2}$ è l'$\alpha$-quantile di $\chi_{n-1}^{2}$, mentre il valore critico superiore $\chi_{n-1,\alpha,+}^{2}$ di livello $\alpha$ è l'$1-\alpha$-quantile di $\chi_{n-1}^{2}$.\\
+Perciò, considerando i valori critici superiore e inferiore di livello $\frac{\alpha}{2}$ della distribuzione $\chi_{n-1}^{2}$, abbiamo:
+\[ P\Bigg( \chi_{n-1,\frac{\alpha}{2},-}^{2} \leq \frac{(n-1)S_{X,n}^{2}}{\sigma^{2}} \leq \chi_{n-1,\frac{\alpha}{2},+}^{2} \Bigg) \geq 1-\alpha \]
+Da qui otteniamo facilmente che:
+\[ P\Bigg( \frac{(n-1)S_{X,n}^{2}}{\chi_{n-1,\frac{\alpha}{2},+}^{2}} \leq \sigma^{2} \leq \frac{(n-1)S_{X,n}^{2}}{\chi_{n-1,\frac{\alpha}{2},-}^{2}} \Bigg) \geq 1-\alpha \]
+Perciò, le statistiche $\frac{(n-1)S_{X,n}^{2}}{\chi_{n-1,\frac{\alpha}{2},+}^{2}}$ e $\frac{(n-1)S_{X,n}^{2}}{\chi_{n-1,\frac{\alpha}{2},-}^{2}}$ costituiscono un intervallo di confidenza per il parametro $\sigma^{2}$ al livello di confidenza $1-\alpha$.
+
+\end{document}

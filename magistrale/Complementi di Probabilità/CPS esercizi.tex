@@ -1,0 +1,388 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\graphicspath{ {C:/Users/barba/OneDrive/Immagini/Screenshot} }
+\begin{document}
+\section*{Esercizio 1}
+Siano $\Omega$ un sample space, $\mathcal{E}$ una $\sigma$-algebra degli eventi e $P: \mathcal{E} \to \mathbb{R}^+$ una probabilità. Sia inoltre $(E_{n})_{n\geq 1}$ una successione di eventi. Dimostrare che $P(\bigcup_{n=1}^{+\infty}E_{n}) = \lim_{n\to +\infty}P(E_{n})$ con l'ipotesi per cui la successione è crescente (ovvero $E_{n} \subseteq E_{n+1} \; \; \forall n$).\\
+\\
+\includegraphics{Screenshot_16}
+\begin{itemize}
+\item Intanto proviamo che $\bigcup_{n=1}^{+\infty}E_{n}-E_{n-1} = \bigcup_{n=1}^{+\infty}E_{n}$:\\ \\
+1) $\forall n \; E_{n}-E_{n-1} \subseteq E_{n} \implies \bigcup_{n=1}^{+\infty}E_{n}-E_{n-1} \subseteq \bigcup_{n=1}^{+\infty}E_{n}$\\ \\
+2) Prendiamo ora $\omega \in \bigcup_{n=1}^{+\infty}E_{n} \implies \exists n_{\omega} : \omega \in E_{n} \; \forall n \geq n_{\omega} \; \wedge$\\ \\
+$\omega \notin E_{n} \; \forall n<n_{\omega} \implies \omega \in E_{n\omega}-E_{n\omega-1} \implies \omega \in \bigcup_{n=1}^{+\infty}E_{n}-E_{n-1}$\\ \\
+$\implies \bigcup_{n=1}^{+\infty}E_{n}-E_{n-1} \supseteq \bigcup_{n=1}^{+\infty}E_{n}$\\
+\item $P(\bigcup_{n=1}^{+\infty}E_{n}) = P(\bigcup_{n=1}^{+\infty}E_{n}-E_{n-1}) = \sum_{n=1}^{+\infty}P(E_{n}-E_{n-1}) =$\\ \\
+$=\lim_{n\to +\infty}\sum_{k=1}^{n}P(E_{k}-E_{k-1}) = \lim_{n\to +\infty}\sum_{k=1}^{n}P(E_{k})-P(E_{k-1}) =$\\ \\
+$= \lim_{n\to +\infty}P(E_{n})-P(E_{0}) = \lim_{n\to +\infty}P(E_{n})$
+\end{itemize}
+
+\section*{Esercizio 2}
+Siano E, F due eventi tali che $P(E)+P(F)>1$. Provare che:\\
+1) $P(E \cap F) \leq min\{P(E), P(F)\}$\\
+2) $P(E)+P(F)-1 \leq P(E \cap F)$\\
+\\
+1) $P(E \cap F) \leq P(E) \wedge P(E \cap F) \leq P(F)$\\
+2) $P(E \cup F) = P(E)+P(F)-P(E \cap F) \implies P(E)+P(F) =$\\
+$= P(E \cup F)+P(E \cap F) \implies P(E)+P(F)-1 = P(E \cup F)+P(E \cap F)-1 \implies P(E)+P(F)-1 \leq P(E \cap F)$
+
+\section*{Esercizio 3}
+L'urna A contiene 5 palline bianche e 10 palline nere. L'urna B contiene 3 palline bianche e 12 palline nere. Viene lanciata una moneta equa. Se esce testa, viene pescata una pallina da un'urna A e viceversa. Supponiamo che questo esperimento sia stato portato a termine e sappiamo che è stata pescata una pallina bianca. Qual è la probabilità che la pallina sia stata pescata dall'urna A? Qual è la probabilità che la pallina sia stata pescata dall'urna B?\\
+\\
+\underline{Dati:}\\
+$P(W|H) = \frac{1}{3}$ \hspace{10mm} $P(B|H) = \frac{2}{3}$\\ \\
+$P(W|T) = \frac{1}{5}$ \hspace{10mm} $P(B|T) = \frac{4}{5}$\\ \\
+$P(H)=P(T) = \frac{1}{2}$\\ \\
+$P(H|W) = \; ?$ \hspace{10mm} $P(T|W) = ?$\\
+\\
+$P(W) = P(W \cap H) + P(W \cap T) = P(W|H)\cdot P(H) +  P(W|T)\cdot P(T) = \frac{4}{15}$
+\begin{itemize}
+\item $P(H|W) = \frac{P(W \cap H)}{P(W)} = \frac{P(W|H)\cdot P(H)}{P(W)} = \frac{5}{8}$
+\item $P(T|W) = \frac{P(W \cap T)}{P(W)} = \frac{P(W|T)\cdot P(T)}{P(W)} = \frac{3}{8}$
+\end{itemize}
+
+\section*{Esercizio 4}
+Sia X una variabile aleatoria uniformemente distribuita nell'intervallo [-1, 1] e sia $g: \mathbb{R} \to \mathbb{R}$ una funzione data da:
+\[ g(x) := x^{2} \; \; \; \; \forall x \in \mathbb{R} \]
+1) La funzione $Y: \Omega \to \mathbb{R}$ data da:
+\[ Y(\omega) := g(X(\omega)) \; \; \; \; \forall \omega \in \Omega \]
+è una variabile aleatoria?\\
+2) Calcolare la funzione di distribuzione di Y.\\
+3) Y è assolutamente continua?\\
+4) Il momento di ordine 1 e il momento di ordine 2 di Y sono finiti?\\
+5) Calcolare $\mathbb{E}[X]$ e $\mathbb{D}^{2}[X]$.\\
+\\
+1) g(x) è una funzione continuamente differenziabile $\implies$ g(x) è una funzione boreliana $\implies$ Y è una variabile aleatoria.\\
+\\
+2) $F_{Y}(y) = P(Y \leq y) = P(X^{2} \leq y)$
+\begin{itemize}
+\item $y<0 \implies F_{Y}(y)=0$
+\item $y\geq 0 \implies  F_{Y}(y)= P(-\sqrt{y} \leq X \leq \sqrt{y}) = \int_{(-\sqrt{y},\sqrt{y})}^{}f_{X}(u) \; d\mu_{L}(u) = \int_{(-\sqrt{y},\sqrt{y})}^{}\frac{1}{2}\mathbf{1}_{(-1,1)}(u) \; d\mu_{L}(u)$
+	\begin{itemize}
+	\item $0 \leq y<1 \implies F_{Y}(y)=\int_{(-\sqrt{y},\sqrt{y})}^{}\frac{1}{2} \; d\mu_{L}(u) = \int_{-\sqrt{y}}^{\sqrt{y}}\frac{1}{2}du = \sqrt{y}$
+	\item $y \geq 1 \implies F_{Y}(y)=\int_{(-1,1)}^{}\frac{1}{2} \; d\mu_{L}(u) = \int_{-1}^{1}\frac{1}{2}du = 1$
+	\end{itemize}
+\end{itemize}
+In definitiva, $F_{Y}(y) = \sqrt{y}\cdot \mathbf{1}_{(0,1)}(y)+\mathbf{1}_{(1,+\infty)}(y)$\\
+\\
+3) $F_{Y}'(y) = \frac{1}{2\sqrt{y}}\cdot \mathbf{1}_{(0,1)}(y)$\\
+$\implies \int_{(-\infty,y]}^{}F_{Y}'(u) \; d\mu_{L}(u) = \int_{(-\infty,y]}^{}\frac{1}{2\sqrt{u}}\cdot \mathbf{1}_{(0,1)}(u) \; d\mu_{L}(u)$
+\begin{itemize}
+\item $y<0 \implies 0$
+\item $0 \leq y<1 \implies \int_{[0,y]}^{}\frac{1}{2\sqrt{u}} \; d\mu_{L}(u) = \int_{0}^{y}\frac{1}{2}u^{-\frac{1}{2}}du = \sqrt{y}$
+\item $y \geq 1 \implies \int_{[0,1]}^{}\frac{1}{2\sqrt{u}} \; d\mu_{L}(u) = \int_{0}^{1}\frac{1}{2}u^{-\frac{1}{2}}du = 1$
+\end{itemize}
+In definitiva, $\int_{(-\infty,y]}^{}F_{Y}'(u) \; d\mu_{L}(u) = F_{Y}(y) \implies$ Y è assolutamente continua.\\
+\\
+4) Verifico che $\int_{\mathbb{R}}^{}|y|^{2}\cdot f_{Y}(y) \; d\mu_{L}(y) < +\infty$\\ \\
+(o, equivalentemente, $\int_{\mathbb{R}}^{}|x^{2}|^{2}\cdot f_{X}(x) \; d\mu_{L}(x) < +\infty$):\\ \\
+$\int_{\mathbb{R}}^{}|x^{2}|^{2}\cdot \frac{1}{2}\mathbf{1}_{(-1,1)}(x) \; d\mu_{L}(x) = \int_{[-1,1]}{}\frac{1}{2}x^{4} \; d\mu_{L}(x) = \frac{1}{2} \int_{-1}^{1}x^{4}dx = \frac{1}{5} < +\infty$\\ \\
+$\implies \exists$ momento di ordine 2 di Y $\implies \exists$ momento di ordine 1 di Y.\\
+\\
+5) $\mathbb{E}[Y^{2}] = \int_{\mathbb{R}}^{}(x^{2})^{2}\cdot f_{X}(x) \; d\mu_{L}(x) = \frac{1}{5}$\\ \\
+$\mathbb{E}[Y] = \int_{\mathbb{R}}^{}x^{2}\cdot f_{X}(x) \; d\mu_{L}(x) = \int_{\mathbb{R}}^{}x^{2}\cdot \frac{1}{2}\mathbf{1}_{(-1,1)}(x) \; d\mu_{L}(x) = \frac{1}{2} \int_{[-1,1]}^{}x^{2} \; d\mu_{L}(x) = \frac{1}{2} \int_{-1}^{1}x^{2}dx = \frac{1}{3}$\\ \\
+$\mathbb{D}^{2}[Y] = \mathbb{E}[Y^{2}] - \mathbb{E}^{2}[Y] = \frac{4}{45}$
+
+\section*{Esercizio 5}
+Sia $F: \mathbb{R} \to \mathbb{R}^+$ una funzione data da:
+\[ F(x) := ae^{x}\mathbf{1}_{\mathbb{R}^{--}}(x) - \Big(\frac{1}{2}e^{-x}-b\Big)\mathbf{1}_{\mathbb{R}^{+}}(x) \; \; \; \; \forall x \in \mathbb{R} \]
+dove $a,b \in \mathbb{R}$. Determina a, b in modo tale che F(x) sia una funzione di \\ distribuzione di una variabile aleatoria X assolutamente continua.
+\\
+\begin{itemize}
+\item $\lim_{x\to -\infty}F(x) = 0 \; \; \forall a,b \in \mathbb{R}$
+\item $F(x) \geq 0 \; \; \forall x \in \mathbb{R} \implies a>0$
+\item $\lim_{x\to +\infty}F(x) = 1 \implies b=1$
+\item F(x) non decrescente $\implies \lim_{x\to 0^{-}}F(x) \leq \lim_{x\to 0^{+}}F(x) = F(0) = 1-\frac{1}{2} = \frac{1}{2} \implies 0 \leq a \leq \frac{1}{2}$
+\item F(x) continua $\implies \lim_{x\to 0^{-}}F(x) = \lim_{x\to 0^{+}}F(x) \implies a = \frac{1}{2}$
+\end{itemize}
+In definitiva:
+\[ F(x) =  \frac{1}{2}e^{x}\mathbf{1}_{\mathbb{R}^{--}}(x) + \Big(1-\frac{1}{2}e^{-x}\Big)\mathbf{1}_{\mathbb{R}^{+}}(x) \; \; \; \; \forall x \in \mathbb{R} \]
+Ora resta da provare che X è assolutamente continua:
+\[ F'(x) =  \frac{1}{2}e^{x}\mathbf{1}_{\mathbb{R}^{--}}(x) + \frac{1}{2}e^{-x}\mathbf{1}_{\mathbb{R}^{++}}(x) \; \; \; \; \forall x \neq 0 \]
+Per quanto riguarda x=0:
+\[ \lim_{x\to 0^{-}}F'(x) = \lim_{x\to 0^{+}}F'(x) = \frac{1}{2} \]
+Dunque, F'(x) esiste ed è limitata $\forall x \in \mathbb{R} \implies$ X è assolutamente continua.
+
+\section*{Esercizio 6}
+La decorazione di un albero di Natale è composta da 1000 lampadine. Il tempo di vita di ciascuna lampadina è distribuito esponenzialmente con una vita media di 20 giorni. Le lampadine vengono accese alla mezzanotte del 15 novembre. Stima mediante la prima disuguaglianza di Markov la probabilità che almeno 800 lampadine siano ancora accese alla mezzanotte del 25 dicembre.\\
+\\
+X := tempo di vita di una lampadina $\implies X \sim Exp(\lambda)$\\
+$f_{X}(x) = \lambda e^{-\lambda x} \mathbf{1}_{\mathbb{R}^{+}}(x)$\\
+$\mathbb{E}[X] = \frac{1}{\lambda} = 20 \; gg \implies \lambda = \frac{1}{20}$\\
+$\implies f_{X}(x) = \frac{1}{20} e^{-\frac{1}{20} x} \mathbf{1}_{\mathbb{R}^{+}}(x)$\\
+Dal 15 novembre al 25 dicembre passano 40 giorni $\implies$\\
+$P(X \geq 40) = 1-P(X<40) = 1-\int_{(-\infty,40]}^{}\frac{1}{20}e^{-\frac{1}{20}x}\mathbf{1}_{\mathbb{R}^{+}}(x) \; d\mu_{L}(x) =$\\
+$= 1-\int_{[0,40]}^{}\frac{1}{20}e^{-\frac{1}{20}x} \; d\mu_{L}(x) = 1-\frac{1}{20}\int_{0}^{40}e^{-\frac{1}{20}x}dx = e^{-2}$\\ \\
+Y := numero di lampadine ancora accese il 25 dicembre $\implies$\\
+$Y \sim Bin(n=1000; \; p=e^{-2})$\\
+$P(Y \geq 800) \leq \frac{\mathbb{E}[Y]}{800} \approx 0.169$
+
+\section*{Esercizio 7}
+Sia $f: \mathbb{R}^{2} \to \mathbb{R}_{+}$ una funzione data da:
+\[ f(x,y) := kxe^{-(x+y)} \mathbf{1}_{\mathbb{R}_{+}^{2}}(x,y) \; \; \; \; \forall (x,y) \in \mathbb{R}^{2} \]
+1) Determinare $k \in \mathbb{R}$ in modo tale che $f: \mathbb{R}^{2} \to \mathbb{R}_{+}$ sia una densità di probabilità.\\
+\\
+2) Sia $Z := (X,Y)$ il vettore aleatorio di densità $f$. Determinare la funzione di distribuzione $F_{Z}: \mathbb{R}^{2} \to \mathbb{R}_{+}$ del vettore Z e verificare che:
+\[ \frac{\partial F^{2}(x,y)}{\partial x \partial y} = f(x,y) \]
+3) Determinare le funzioni di distribuzione marginali $F_{X}: \mathbb{R} \to \mathbb{R}_{+}$ e\\
+$F_{Y}: \mathbb{R} \to \mathbb{R}_{+}$ delle componenti X, Y di Z.\\
+\\
+4) Determinare le densità $f_{X}:\mathbb{R} \to \mathbb{R}_{+}$ e $f_{Y}:\mathbb{R} \to \mathbb{R}_{+}$ delle componenti X, Y di Z, e verifica che:
+\[ \frac{dF_{X}(x)}{dx} = f_{X}(x) \; \; \; \; \wedge \; \; \; \; \frac{dF_{Y}(y)}{dy} = f_{Y}(y) \]
+5) X, Y sono variabili aleatorie indipendenti?\\
+6) Calcola $\mathbb{E}[X], \mathbb{E}[Y], \mathbb{D}^{2}[X], \mathbb{D}^{2}[Y]$ e $Cov(X,Y)$.\\
+7) Calcola $\mathbb{E}[(X,Y)]$ e la matrice delle covarianze del vettore (X,Y).\\
+\\
+1) $\int_{\mathbb{R}^{2}}^{}f(x,y) \; d\mu_{L}^{2}(x,y) = \int_{\mathbb{R}^{2}}^{}kxe^{-(x+y)} \mathbf{1}_{\mathbb{R}_{+}^{2}}(x,y) \; d\mu_{L}^{2}(x,y) = \int_{\mathbb{R}_{+}^{2}}^{}kxe^{-(x+y)} \; d\mu_{L}^{2}(x,y) = k\int_{0}^{+\infty}xe^{-x} \; dx \int_{0}^{+\infty}e^{-y} \; dy = k \implies k=1$
+\[ f(x,y) = xe^{-(x+y)} \mathbf{1}_{\mathbb{R}_{+}^{2}}(x,y) \; \; \; \; \forall (x,y) \in \mathbb{R}^{2} \]
+2) $F_{X,Y}(x,y) = \int_{(-\infty, x]\times(-\infty, y]}^{}f(u,v) \; d\mu_{L}^{2}(u,v) = \int_{(-\infty, x]\times(-\infty, y]}^{}ue^{-(u+v)} \mathbf{1}_{\mathbb{R}_{+}^{2}}(u,v) \; d\mu_{L}^{2}(u,v)$
+\begin{itemize}
+\item $x<0 \vee y<0 \implies 0$
+\item $x \geq 0 \; \wedge \; y \geq 0 \implies \int_{[0,x]\times[0,y]}^{}ue^{-(u+v)} \; d\mu_{L}^{2}(u,v) = \int_{0}^{x}ue^{-u} \; du \int_{0}^{y}e^{-v} \; dv =$\\ \\
+$-xe^{-x}+1-e^{-x}+xe^{-(x+y)}-e^{-y}+e^{-(x+y)}$
+\end{itemize}
+In definitiva:
+\[ F_{X,Y}(x,y) = \mathbf{1}_{\mathbb{R}_{+}^{2}}(x,y) (xe^{-(x+y)}-xe^{-x}+e^{-(x+y)}-e^{-x}-e^{-y}+1) \]
+$\frac{\partial F^{2}(x,y)}{\partial x \partial y} = \frac{\partial}{\partial x}(-xe^{-(x+y)}-e^{-(x+y)}+e^{-y}) \mathbf{1}_{\mathbb{R}_{+}^{2}}(x,y) = xe^{-(x+y)} \mathbf{1}_{\mathbb{R}_{+}^{2}}(x,y) = f(x,y)$\\
+\\
+3) $F_{X}(x) = \lim_{y\to +\infty}F_{X,Y}(x,y) = \mathbf{1}_{\mathbb{R}_{+}}(x) (1-xe^{-x}-e^{-x})$\\
+$F_{Y}(y) = \lim_{x\to +\infty}F_{X,Y}(x,y) = \mathbf{1}_{\mathbb{R}_{+}}(y) (1-e^{-y})$\\
+\\
+4) $f_{X}(x) = \int_{\mathbb{R}}^{}f(x,y) \; d\mu_{L}(y) = \int_{\mathbb{R}}^{}xe^{-(x+y)} \mathbf{1}_{\mathbb{R}_{+}^{2}}(x,y) \; d\mu_{L}(y) = xe^{-x} \mathbf{1}_{\mathbb{R}_{+}}(x) \int_{\mathbb{R}_{+}}^{}e^{-y} \; d\mu_{L}(y) = xe^{-x} \mathbf{1}_{\mathbb{R}_{+}}(x) \int_{0}^{+\infty}e^{-y} \; dy = xe^{-x} \mathbf{1}_{\mathbb{R}_{+}}(x)$\\ \\
+$f_{Y}(y) = \int_{\mathbb{R}}^{}f(x,y) \; d\mu_{L}(x) = \int_{\mathbb{R}}^{}xe^{-(x+y)} \mathbf{1}_{\mathbb{R}_{+}^{2}}(x,y) \; d\mu_{L}(x) = e^{-y} \mathbf{1}_{\mathbb{R}_{+}}(y) \int_{\mathbb{R}_{+}}^{}xe^{-x} \; d\mu_{L}(x) = e^{-y} \mathbf{1}_{\mathbb{R}_{+}}(y) \int_{0}^{+\infty}xe^{-x} \; dx = e^{-y} \mathbf{1}_{\mathbb{R}_{+}}(y)$\\ \\
+$\frac{dF_{X}(x)}{dx} = \frac{d}{dx}(1-xe^{-x}-e^{-x}) \mathbf{1}_{\mathbb{R}_{+}}(x) = xe^{-x} \mathbf{1}_{\mathbb{R}_{+}}(x) = f_{X}(x)$\\ \\
+$\frac{dF_{Y}(y)}{dy} = \frac{d}{dy}(1-e^{-y}) \mathbf{1}_{\mathbb{R}_{+}}(y) = e^{-y} \mathbf{1}_{\mathbb{R}_{+}}(y) = f_{Y}(y)$\\
+\\
+5) $F_{X}(x)\cdot F_{Y}(y) = F_{X,Y}(x,y) \implies$ X, Y sono variabili aleatorie indipendenti.\\
+\\
+6) $\mathbb{E}[X^{2}] = \int_{\mathbb{R}}^{}x^{2}f_{X}(x) \; d\mu_{L}(x) = \int_{\mathbb{R}}^{}x^{3}e^{-x} \mathbf{1}_{\mathbb{R}_{+}}(x) \; d\mu_{L}(x) = \int_{\mathbb{R}_{+}}^{}x^{3}e^{-x} \; d\mu_{L}(x) = \int_{0}^{+\infty}x^{3}e^{-x} \; dx = 6$\\ \\
+$\mathbb{E}[X] = \int_{\mathbb{R}}^{}xf_{X}(x) \; d\mu_{L}(x) = \int_{\mathbb{R}}^{}x^{2}e^{-x} \mathbf{1}_{\mathbb{R}_{+}}(x) \; d\mu_{L}(x) = \int_{\mathbb{R}_{+}}^{}x^{2}e^{-x} \; d\mu_{L}(x) = \int_{0}^{+\infty}x^{2}e^{-x} \; dx = 2$\\ \\
+$\mathbb{D}^{2}[X] = \mathbb{E}[X^{2}] - \mathbb{E}^{2}[X] = 6-4 = 2$\\ \\
+$\mathbb{E}[Y^{2}] = \int_{\mathbb{R}}^{}y^{2}f_{Y}(y) \; d\mu_{L}(y) = \int_{\mathbb{R}}^{}y^{2}e^{-y} \mathbf{1}_{\mathbb{R}_{+}}(y) \; d\mu_{L}(y) = \int_{\mathbb{R}_{+}}^{}y^{2}e^{-y} \; d\mu_{L}(y) = \int_{0}^{+\infty}y^{2}e^{-y} \; dy = 2$\\ \\
+$\mathbb{E}[Y] = \int_{\mathbb{R}}^{}yf_{Y}(y) \; d\mu_{L}(y) = \int_{\mathbb{R}}^{}ye^{-y} \mathbf{1}_{\mathbb{R}_{+}}(y) \; d\mu_{L}(y) = \int_{\mathbb{R}_{+}}^{}ye^{-y} \; d\mu_{L}(y) = \int_{0}^{+\infty}ye^{-y} \; dy = 1$\\ \\
+$\mathbb{D}^{2}[Y] = \mathbb{E}[Y^{2}] - \mathbb{E}^{2}[Y] = 2-1 = 1$\\
+$Cov(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\cdot \mathbb{E}[Y] = 0$ poiché X, Y sono indipendenti.\\
+\\
+7) $\mathbb{E}[(X,Y)] = (\mathbb{E}[X], \mathbb{E}[Y])^{T} = (2,1)^{T}$\\ \\
+$\mathbb{D}^{2}[(X,Y)] = \left[\begin{matrix} \mathbb{D}^{2}[X] & Cov(X,Y) \\ Cov(Y,X) & \mathbb{D}^{2}[Y] \end{matrix}\right] = \left[\begin{matrix} 2 & 0 \\ 0 & 1 \end{matrix}\right]$
+
+\section*{Esercizio 8}
+Consideriamo le seguenti variabili aleatorie: $X \sim N(0,1) \; , \; R \sim Rad(frac{1}{2}) \; , \; Y = RX$ , dove X, R sono tra loro indipendenti. Verificare che $Y \sim N(0,1)$ e che Y è scorrelata ma non indipendente da X. Calcolare inoltre $\mathbb{E}[Y|X]$.\\
+\\
+$P(Y \leq y) = P(RX \leq y) = P(RX \leq y \cap R=1) + P(RX \leq y \cap R=-1) = P(RX \leq y \; | \; R=1) \cdot P(R=1) + P(RX \leq y \; | \; R=-1) \cdot P(R=-1) =$\\
+$P(X \leq y \; | \; R=1) \cdot P(R=1) + P(-X \leq y \; | \; R=-1) \cdot P(R=-1) =$\\
+\{R, X indipendenti\} $= P(X \leq y) \cdot P(R=1) + P(-X \leq y) \cdot P(R=-1) = \frac{1}{2}(P(X \leq y) + P(X \geq -y)) =$\\
+\{X gaussiana\} $= \frac{1}{2} \cdot 2 \cdot P(X \leq y) = P(X \leq y) \implies Y \sim N(0,1)$\\
+\\
+$Cov(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\cdot \mathbb{E}[Y] = \mathbb{E}[RX^{2}] - \mathbb{E}[X]\cdot \mathbb{E}[RX] =$\\
+\{R, X indipendenti\} $= \mathbb{E}[R]\cdot \mathbb{E}[X^{2}] - \mathbb{E}[R]\cdot \mathbb{E}^{2}[X] = 0$\\
+\\
+Per provare che X, Y non sono indipendenti, applico la funzione boreliana $f(x) := x^{2}$ sia alla variabile aleatoria X, sia alla variabile aleatoria Y:
+\[ f(X) = X^{2} \; \; \; ; \; \; \; f(Y) = Y^{2} = (RX)^{2} = X^{2} \]
+Poiché $f(X)$, $f(Y)$ danno luogo alla medesima distribuzione, sono necessariamente due variabili aleatorie non indipendenti. Ne consegue che anche X, Y sono non indipendenti.\\
+\\
+$\mathbb{E}[Y|X] = \mathbb{E}[RX|X] = X\mathbb{E}[R|X] = \{$R,X indipendenti$\} = X\mathbb{E}[R] = 0$
+
+\section*{Esercizio 9}
+Siano X, Y due variabili aleatorie tali che $X \sim N(0,1), \; Y \sim N(0,2), \; Cov(X,Y) = 1$. Il vettore Z := (X,Y) è gaussiano?\\
+\\
+Vediamo se è possibile scrivere:
+\[ \left[\begin{matrix} X \\ Y \end{matrix}\right] = A \cdot \left[\begin{matrix} Z_{1} \\ Z_{2} \end{matrix}\right] \]
+dove $Z_{1} \sim Z_{2} \sim N(0,1)$.\\
+Se ciò fosse possibile, potremmo scrivere:\\ \\
+$A \cdot A^{T} = \Sigma^{2} = \left[\begin{matrix} \mathbb{D}^{2}[X] & Cov(X,Y) \\ Cov(Y,X) & \mathbb{D}^{2}[Y]\end{matrix}\right] = \left[\begin{matrix} 1 & 1 \\ 1 & 2 \end{matrix}\right] \implies$\\ \\
+$\left[\begin{matrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{matrix}\right] \cdot \left[\begin{matrix} a_{11} & a_{21} \\ a_{12} & a_{22} \end{matrix}\right] = \left[\begin{matrix} a_{11}^{2}+a_{12}^{2} & a_{11}a_{21}+a_{12}a_{22} \\ a_{11}a_{21}+a_{12}a_{22} & a_{21}^{2}+a_{22}^{2} \end{matrix}\right] = \left[\begin{matrix} 1 & 1 \\ 1 & 2 \end{matrix}\right] \implies$\\ \\
+\[
+\begin{cases}
+a_{11}^{2}+a_{12}^{2}=1\\
+a_{11}a_{21}+a_{12}a_{22}=1\\
+a_{21}^{2}+a_{22}^{2}=2
+\end{cases}
+\]
+Abbiamo tre equazioni con quattro incognite e, quindi, una variabile libera. Se decidiamo di porre $a_{11}=0$, otteniamo $a_{12}=1 \; , \; a_{21}=1 \; , \; a_{22}=1 \implies$\\
+$A = \left[\begin{matrix} 0 & 1 \\ 1 & 1 \end{matrix}\right]$\\
+In conclusione, Z è un vettore gaussiano.
+
+\section*{Esercizio 10}
+Sia X una variabile aleatoria uniformemente distribuita nell'intervallo [0, 1] e sia $(Y_{n})_{n\geq 1}$ una successione di variabili aleatorie reali date da:
+\[ Y_{n} :=
+\begin{cases}
+n \; \; \; \; se \; 0 \leq X < \frac{1}{n}\\
+0 \; \; \; \; se \; \frac{1}{n} \leq X \leq 1
+\end{cases}
+\]
+Verificare se la successione $(Y_{n})_{n\geq 1}$ converge in distribuzione, converge in probabilità, converge quasi sicuramente e converge in media, nell'ordine assegnato.\\
+\\
+Possiamo esprimere la nostra successione anche nel seguente modo:
+\[ Y_{n} :=
+\begin{cases}
+n \; \; \; \; con \; P(Y_{n}=n) = \frac{1}{n}\\
+0 \; \; \; \; con \; P(Y_{n}=0) = 1 - \frac{1}{n}
+\end{cases}
+\]
+In altre parole, $Y_{n} \sim Ber(\frac{1}{n})$.\\
+\\
+\underline{Convergenza in distribuzione:}\\
+$F_{Yn}(y) = (1-\frac{1}{n}) \mathbf{1}_{[0,n)}(y) + \mathbf{1}_{[n,+\infty)}(y)$
+\begin{itemize}
+\item Se $y<0 \implies lim_{n\to +\infty}F_{Yn}(y) = 0$
+\item Se $y>0 \implies \exists \; n_{y} \in \mathbb{N} : \forall n > n_{y} \; \; \; n>y \implies F_{Yn}(y) = 1-\frac{1}{n}$ definitivamente $\implies \lim_{n\to +\infty}F_{Yn}(y) = 1$
+\end{itemize}
+In definitiva, $F_{Yn}(y) = H(y) \; \; \forall y \in \mathbb{R} \implies Y_{n} \xrightarrow[]{W} Dirac(0)$\\
+\\
+\underline{Convergenza in probabilità:}\\
+Qui possiamo sfruttare la teoria oppure effettuare il seguente calcolo:\\
+$\lim_{n\to +\infty}P(\{ |Y_{n}-Dirac(0)| < \epsilon \}) = \lim_{n\to +\infty}P(Y_{n}<\epsilon)$\\
+$ = \{ P(Y_{n}<\epsilon) = P(Y_{n} = 0)$ definitivamente$\} = \lim_{n\to +\infty}P(Y_{n}=0) = \lim_{n\to +\infty}(1-\frac{1}{n}) = 1$\\
+$ \implies Y_{n} \xrightarrow[]{P} Dirac(0)$\\
+\\
+\underline{Convergenza quasi certa:}\\
+Ci chiediamo se $\exists \; E \in \mathcal{E} \; t.c. \; P(E)=0 \; \wedge \; \forall \omega \in \Omega - E \; \; \lim_{n\to +\infty}Y_{n}(\omega) = 0$.\\
+Sia $E_{0} := \{\omega \in \Omega: X(\omega)=0 \} \implies P(E_{0}) = P(X=0) = 0$.\\
+Sia $\omega \in \Omega - E_{0} \implies X(\omega) > 0 \implies X(\omega) > \frac{1}{n}$ definitivamente $\implies Y_{n}(\omega) = 0$ definitivamente $\implies \lim_{n\to +\infty}Y_{n}(\omega) = 0 \implies Y_{n} \xrightarrow[]{a.s.} Dirac(0)$\\
+\\
+\underline{Convergenza in media:}\\
+$\mathbb{E}[|Y_{n}-Dirac(0)|] = \mathbb{E}[Y_{n}] = n\cdot \frac{1}{n} + 0\cdot (1-\frac{1}{n}) = 1 \neq 0 \implies$ non c'è convergenza in media $\implies$ non può esserci convergenza in media quadratica.
+
+\section*{Esercizio 11}
+Sia X una variabile aleatoria con densità pari a :
+\[ f_{X}(x) := \frac{\alpha - 1}{x^{\alpha}} \mathbf{1}_{[1,+\infty)}(x) \; \; , \; \; \alpha > 1 \]
+Sia inoltre $(Y_{n})_{n \geq 1}$ una successione di variabili aleatorie data da:
+\[ Y_{n} := \frac{X}{n} \; \; , \; \; \forall n \in \mathbb{N} \]
+Studiare la convergenza in distribuzione, in probabilità e in media di $(Y_{n})_{n \geq 1}$ al variare di $\alpha > 1$.\\
+\\
+\underline{Convergenza in distribuzione:}\\
+$F_{Yn}(y) = P(Y_{n} \leq y) = P(\frac{X}{n} \leq y) = P(X \leq ny) = \int_{(-\infty, ny]}^{}\frac{\alpha - 1}{x^{\alpha}} \mathbf{1}_{[1,+\infty)}(x) \; d\mu_{L}(x) =$\\
+\[
+\begin{cases}
+0 \; \; \; \; se \; y \leq \frac{1}{n}\\
+1 - \frac{1}{(ny)^{\alpha - 1}} \; \; \; \; se \; y>\frac{1}{n}
+\end{cases}
+\]
+\begin{itemize}
+\item Se $y \leq 0 \implies F_{Yn}(y) = 0 \implies F_{Y}(y) = \lim_{n\to +\infty}{F_{Yn}(y)} = 0$
+\item Se $y>0 \implies F_{Yn}(y) = 1-\frac{1}{(ny)^{\alpha - 1}}$ definitivamente $\implies F_{Y}(y) = \lim_{n\to +\infty}F_{Yn}(y) = 1$
+\end{itemize}
+In definitiva, $F_{Y}(y) = \mathbf{1}_{(0,+\infty)}(y) \implies F_{Y}(y)$ differisce da H(y) solo nel suo unico punto di discontinuità $\implies Y_{n} \xrightarrow[]{W} Dirac(0)$\\
+\\
+\underline{Convergenza in probabilità:}\\
+Dalla teoria possiamo subito affermare che $Y_{n} \xrightarrow[]{P} Dirac(0)$.\\
+\\
+\underline{Convergenza in media:}\\
+$\mathbb{E}[|Y_{n}-Dirac(0)|] = \mathbb{E}[Y_{n}] = \frac{1}{n} \mathbb{E}[X] = \frac{1}{n} \int_{\mathbb{R}}^{}x f_{X}(x) \; d\mu_{L}(x) = \frac{\alpha - 1}{\alpha n}$\\
+$\implies \lim_{n\to +\infty}\mathbb{E}[|Y_{n}-Dirac(0)|] = \lim_{n\to +\infty}\frac{\alpha - 1}{\alpha n} = 0$\\
+$\implies Y_{n} \xrightarrow[]{\mathcal{L}^{1}} Dirac(0)$
+
+\section*{Esercizio 12}
+Sia X una variabile aleatoria uniformemente distribuita nell'intervallo [0, $\theta$], dove $\theta > 0$ è un parametro. Un investigatore vuole stimare $\theta$ sulla base di un simple random sample $X_{1},...,X_{n}$, e lo fa considerando i seguenti due stimatori:
+\[ \hat{\theta}_{1} = \check{X}_{n} = max\{X_{1},...,X_{n}\} \]
+\[ \hat{\theta}_{2} = \overline{X}_{n} = \frac{1}{n} \cdot \sum_{k=1}^{n}X_{k} \]
+1) $\check{X}_{n}$ è distorto? Nel caso in cui lo sia, è possibile derivare da $\check{X}_{n}$ uno stimatore di $\theta$ non distorto?\\
+2) $\overline{X}_{n}$ è distorto? Nel caso in cui lo sia, è possibile derivare da $\overline{X}_{n}$ uno stimatore di $\theta$ non distorto?\\
+3) Quale stimatore l'investigatore dovrebbe preferire tra i due considerati?\\
+4) $\check{X}_{n}$ è consistente in probabilità? E in media quadratica?\\
+\\
+1) $F_{\check{X}_{n}}(x) = P(\check{X}_{n} \leq x) = P(X_{1} \leq x,...,X_{n} \leq x) = \prod_{k=1}^{n}P(X_{k} \leq x) = \prod_{k=1}^{n}P(X \leq x) = P(X \leq x)^{n} = F_{X}^{n}(x)$\\ \\
+$X \sim Unif(0, \theta) \implies F_{X}(x) = \frac{x}{\theta}\cdot \mathbf{1}_{[0,\theta]}(x) + \mathbf{1}_{(\theta, +\infty)}(x)$\\ \\
+$\implies F_{\check{X}_{n}}(x) =  F_{X}^{n}(x) = \frac{x^{n}}{\theta^{n}}\cdot \mathbf{1}_{[0,\theta]}(x) + \mathbf{1}_{(\theta, +\infty)}(x)$\\ \\
+$\int_{(-\infty, x]}^{}F'_{\check{X}_{n}}(u) \; d\mu_{L}(u) = \int_{(-\infty, x]}^{}\frac{nu^{n-1}}{\theta^{n}}\cdot \mathbf{1}_{[0,\theta]}(u) \; d\mu_{L}(u) =$\\
+$=\frac{x^{n}}{\theta^{n}}\cdot \mathbf{1}_{[0,\theta]}(x) + \mathbf{1}_{(\theta, +\infty)}(x) =  F_{X}^{n}(x)$\\ \\
+$\implies \check{X}_{n}$ è assolutamente continua con densità $f_{\check{X}_{n}}(x) = \frac{nx^{n-1}}{\theta^{n}}\cdot \mathbf{1}_{(0,\theta)}(x)$\\ \\
+$\mathbb{E}[\check{X}_{n}] = \int_{\mathbb{R}}^{}xf_{\check{X}_{n}}(x) \; d\mu_{L}(x) = \frac{n}{n+1}\theta$\\ \\
+$\implies \check{X}_{n}$ è uno stimatore di $\theta$ distorto ma $\frac{n+1}{n}\check{X}_{n}$ è uno stimatore di $\theta$ non distorto.\\
+\\
+2) $\mathbb{E}[\overline{X}_{n}] = \mathbb{E}[X] = \int_{\mathbb{R}}^{}xf_{X}(x) \; d\mu_{L}(x) = \int_{\mathbb{R}}^{}\frac{x}{\theta}\cdot \mathbf{1}_{[0,\theta]}(x) \; d\mu_{L}(x) = \frac{\theta}{2}$\\ \\
+$\implies \overline{X}_{n}$ è uno stimatore di $\theta$ distorto ma $2 \overline{X}_{n}$ è uno stimatore di $\theta$ non distorto.\\
+\\
+3) Sappiamo che:
+\[ \mathbb{E}\Big[\frac{n+1}{n}\check{X}_{n}\Big] = \mathbb{E}[2 \overline{X}_{n}] = \theta \]
+Per scegliere quale stimatore tra questi due è migliore, dobbiamo considerarne le varianze.\\ \\
+$\mathbb{E}[\check{X}^{2}_{n}] = \int_{\mathbb{R}}^{}x^{2}f_{\check{X}_{n}}(x) \; d\mu_{L}(x) = \frac{n}{n+2}\theta^{2}$\\ \\
+$\implies \mathbb{D}^{2}[\check{X}_{n}] = \mathbb{E}[\check{X}^{2}_{n}] - \mathbb{E}^{2}[\check{X}_{n}] = \frac{n}{n+2}\theta^{2} - \frac{n^{2}}{(n+1)^{2}}\theta^{2} = \frac{n}{(n+1)^{2}(n+2)}\theta^{2}$\\ \\
+$\implies \mathbb{D}^{2}[\frac{n+1}{n}\check{X}_{n}] = (\frac{n+1}{n})^{2}\cdot \mathbb{D}^{2}[\check{X}_{n}] = (\frac{n+1}{n})^{2}\cdot \frac{n}{(n+1)^{2}(n+2)}\theta^{2} = \frac{\theta^{2}}{n(n+2)}$\\
+\\
+D'altra parte abbiamo:\\
+$\mathbb{D}^{2}[2 \overline{X}_{n}] = 4\mathbb{D}^{2}[\overline{X}_{n}] = \frac{4}{n}\mathbb{D}^{2}[X] = \frac{4}{n}\frac{\theta^{2}}{12} = \frac{\theta^{2}}{3n}$\\
+\\
+Ora, per qualunque $n>1$ abbiamo:
+\[ \mathbb{D}^{2}\Big[\frac{n+1}{n}\check{X}_{n}\Big] < \mathbb{D}^{2}[2 \overline{X}_{n}] \]
+$\implies \frac{n+1}{n}\check{X}_{n}$ è preferibile a $2 \overline{X}_{n}$.\\
+\\
+4) $P\Big(\Big|\frac{n+1}{n}\check{X}_{n} - \theta \Big| \geq \epsilon \Big) = P\Big(\Big|\frac{n+1}{n}\check{X}_{n} - \mathbb{E}\Big[\frac{n+1}{n}\check{X}_{n}\Big]\Big| \geq \epsilon \Big) \leq \frac{\mathbb{D}^{2}[\frac{n+1}{n}\check{X}_{n}]}{\epsilon^{2}} = \frac{\theta^{2}}{n(n+2)\epsilon^{2}}$\\ \\
+$\implies \frac{n+1}{n}\check{X}_{n} \xrightarrow[]{P} \theta$\\ \\
+D'altra parte, banalmente: $\frac{n}{n+1} \xrightarrow[]{P} 1$\\ \\
+$\implies \check{X}_{n} = \frac{n}{n+1} \cdot \frac{n+1}{n}\check{X}_{n} \xrightarrow[]{P} 1\cdot \theta = \theta$\\ \\
+$\implies$ Entrambi gli stimatori $\frac{n+1}{n}\check{X}_{n}$ e $\check{X}_{n}$ sono consistenti in probabilità.\\
+\\
+Inoltre, considerando che:
+\[ \mathbb{E}\Big[\frac{n+1}{n}\check{X}_{n}\Big] = \theta \; \; \; \; ; \; \; \; \; \mathbb{D}^{2}\Big[\frac{n+1}{n}\check{X}_{n}\Big] = \frac{\theta^{2}}{n(n+2)} \]
+Otteniamo:\\
+$\mathbb{E}[(\check{X}_{n} - \theta)^{2}] = \Big(\frac{n}{n+1}\Big)^{2} \cdot \mathbb{E}\Big[\Big(\frac{n+1}{n}\check{X}_{n} - \frac{n+1}{n}\theta \Big)^{2}\Big] =$\\
+$=\Big(\frac{n}{n+1}\Big)^{2} \cdot \mathbb{E}\Big[\Big(\frac{n+1}{n}\check{X}_{n} - \theta - \frac{\theta}{n} \Big)^{2}\Big] =$\\
+$=\Big(\frac{n}{n+1}\Big)^{2} \cdot \mathbb{E}\Big[\Big(\frac{n+1}{n}\check{X}_{n} - \theta \Big)^{2} - 2\Big(\frac{n+1}{n}\check{X}_{n} - \theta \Big)\frac{\theta}{n} + \frac{\theta^{2}}{n^{2}} \Big] =$\\
+$=\Big(\frac{n}{n+1}\Big)^{2} \Big(\mathbb{E}\Big[\Big(\frac{n+1}{n}\check{X}_{n} - \theta \Big)^{2}\Big] - \frac{2\theta}{n} \mathbb{E}\Big[\frac{n+1}{n}\check{X}_{n} - \theta \Big] + \mathbb{E}\Big[\frac{\theta^{2}}{n^{2}}\Big]\Big) =$\\
+$=\Big(\frac{n}{n+1}\Big)^{2} \Big(\mathbb{D}^{2}\Big[\frac{n+1}{n}\check{X}_{n} - \theta \Big] - 0 + \frac{\theta^{2}}{n^{2}}\Big) = \Big(\frac{n}{n+1}\Big)^{2} \Big(\mathbb{D}^{2}\Big[\frac{n+1}{n}\check{X}_{n}\Big] + \frac{\theta^{2}}{n^{2}}\Big) =$\\
+$=\Big(\frac{n}{n+1}\Big)^{2} \Big(\frac{\theta^{2}}{n(n+2)} + \frac{\theta^{2}}{n^{2}}\Big) = \frac{2\theta^{2}}{(n+1)(n+2)}$\\ \\
+$\implies$ Entrambi gli stimatori $\frac{n+1}{n}\check{X}_{n}$ e $\check{X}_{n}$ sono consistenti in media quadratica.
+
+\section*{Esercizio 13}
+Sia X una variabile aleatoria gaussiana con media $\mu$ e varianza $\sigma^{2}$ ignote. Un investigatore vuole stimare $\mu$ e $\sigma^{2}$ sulla base di un simple random sample $X_{1},...,X_{n}$. \\ \\
+1) Se l'investigatore applica il metodo della massima verosimiglianza, quali sono gli stimatori $\hat{\mu}_{n}^{LM}$ e $\hat{\sigma}_{n}^{2LM}$?\\
+2) Se l'investigatore applica il metodo dei momenti, quali sono gli stimatori $\hat{\mu}_{n}^{M}$ e $\hat{\sigma}_{n}^{2M}$?\\
+\\
+1) $\mathcal{L}_{X_{1},...,X_{n}}(\mu, \sigma; x_{1},...,x_{n}) = \prod_{k=1}^{n}f_{X}(x_{k}; \mu, \sigma) = \prod_{k=1}^{n}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x_{k}-\mu)^{2}}{2\sigma^{2}}} = \frac{1}{\sqrt{2^{n}\pi^{n}}\sigma^{n}}\cdot e^{-\frac{1}{2\sigma^{2}}\sum_{k=1}^{n}(x_{k}-\mu)^{2}}$\\ \\
+$\log[\mathcal{L}_{X_{1},...,X_{n}}(\mu, \sigma; x_{1},...,x_{n})] = -n\Big(\frac{1}{2}\log(2\pi)+\log(\sigma)\Big) - \frac{1}{2\sigma^{2}}\cdot \sum_{k=1}^{n}(x_{k}-\mu)^{2}$\\ \\
+Ora, per determinare il massimo di $\log(\mathcal{L}_{X_{1},...,X_{n}})$, possiamo imporre a zero le derivate parziali rispetto a $\mu$ e rispetto a $\sigma$ di tale funzione. \\ \\
+$\frac{\partial}{\partial \mu}\log[\mathcal{L}_{X_{1},...,X_{n}}(\mu, \sigma; x_{1},...,x_{n})] = \frac{1}{\sigma^{2}}\cdot \sum_{k=1}^{n}(x_{k}-\mu)$\\ \\
+$\frac{\partial}{\partial \sigma}\log[\mathcal{L}_{X_{1},...,X_{n}}(\mu, \sigma; x_{1},...,x_{n})] = \frac{1}{\sigma} \Big(\frac{1}{\sigma^{2}}\cdot \sum_{k=1}^{n}(x_{k}-\mu)^{2} - n \Big)$\\ \\
+$\frac{\partial}{\partial \mu}\log[\mathcal{L}_{X_{1},...,X_{n}}(\mu, \sigma; x_{1},...,x_{n})] = 0 \implies \frac{1}{\sigma^{2}}\cdot \sum_{k=1}^{n}(x_{k}-\mu) = 0 \implies$\\ $\mu = \frac{1}{n}\cdot \sum_{k=1}^{n}x_{k} \implies \mu = \overline{x}_{n}$\\ \\
+$\frac{\partial}{\partial \sigma}\log[\mathcal{L}_{X_{1},...,X_{n}}(\mu, \sigma; x_{1},...,x_{n})] = 0 \implies \frac{1}{\sigma^{2}}\cdot \sum_{k=1}^{n}(x_{k}-\mu)^{2} - n = 0 \implies \sigma^{2} = \frac{1}{n}\cdot \sum_{k=1}^{n}(x_{k}-\mu)^{2} \implies \sigma^{2} = \frac{1}{n}\cdot \sum_{k=1}^{n}(x_{k}-\overline{x}_{n})^{2}$\\ \\
+In definitiva:
+\[ \hat{\mu}_{n}^{LM} = \overline{X}_{n} \; \; \; \; ; \; \; \; \; \hat{\sigma}_{n}^{2LM} = \widetilde{S}_{X,n}^{2} \]
+\\
+2) Poiché i parametri da stimare sono due, consideriamo i momenti di primo e secondo ordine di X:
+\[ \mathbb{E}[X] = \mu \; \; \; \; ; \; \; \; \; \mathbb{E}[X^{2}] = \mu^{2}+\sigma^{2} \]
+Di conseguenza, applicando il metodo dei momenti, abbiamo:
+\[ \frac{1}{n}\cdot \sum_{k=1}^{n}X_{k} = \hat{\mu}_{n}^{M} \; \; \; \; ; \; \; \; \; \frac{1}{n}\cdot \sum_{k=1}^{n}X_{k}^{2} = (\hat{\mu}_{n}^{M})^{2} + \hat{\sigma}_{n}^{2M} \]
+Dalla prima equazione:
+\[ \hat{\mu}_{n}^{M} = \overline{X}_{n} \]
+Sostituendo nella seconda equazione:
+\[ \hat{\sigma}_{n}^{2M} = \frac{1}{n}\cdot \sum_{k=1}^{n}X_{k}^{2} - \overline{X}_{n}^{2} \]
+D'altra parte abbiamo:\\
+$\widetilde{S}_{X,n}^{2} = \frac{1}{n}\cdot \sum_{k=1}^{n}(X_{k} - \overline{X}_{n})^{2} = \frac{1}{n}\cdot \sum_{k=1}^{n}(X_{k}^{2} - 2X_{k}\overline{X}_{n} + \overline{X}_{n}^{2}) =$\\
+$=\frac{1}{n}(\sum_{k=1}^{n}X_{k}^{2} - 2\overline{X}_{n}\cdot \sum_{k=1}^{n}X_{k} + \sum_{k=1}^{n}\overline{X}_{n}^{2}) = \frac{1}{n}(\sum_{k=1}^{n}X_{k}^{2} - 2n\overline{X}_{n}^{2} + n\overline{X}_{n}^{2}) =$\\
+$=\frac{1}{n}(\sum_{k=1}^{n}X_{k}^{2} - n\overline{X}_{n}^{2}) = \frac{1}{n} \cdot \sum_{k=1}^{n}X_{k}^{2} - \overline{X}_{n}^{2}$\\ \\
+$\implies \hat{\sigma}_{n}^{2M} = \widetilde{S}_{X,n}^{2}$
+
+\section*{Esercizio 14}
+Sia X una variabile aleatoria gaussiana con media $\mu$ e varianza $\sigma^{2}$ ignote, e sia $X_{1},...,X_{n}$ un simple random sample di dimensione n estratto da X. Assumere che $n=5$ e che le realizzazioni del campione siano:
+\[ x_{1} = -1.5 \; \; \; ; \; \; \; x_{2} = -0.5 \; \; \; ; \; \; \; x_{3} = 1.5 \; \; \; ; \; \; \; x_{4} = 2.0 \; \; \; ; \; \; \; x_{5} = 2.5 \]
+1) Determinare un intervallo di confidenza con livello di confidenza $1-\alpha = 0.99$ per la media $\mu$.\\
+2) Determinare un intervallo di confidenza con livello di confidenza $1-\alpha = 0.90$ per la deviazione standard $\sigma$.\\
+\\
+1) L'intervallo di confidenza per $\mu$ è dato da:
+\[ \Bigg( \overline{X}_{n} - t_{\frac{\alpha}{2},n-1}^{+} \cdot \frac{S_{n}}{\sqrt{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{n} + t_{\frac{\alpha}{2},n-1}^{+} \cdot \frac{S_{n}}{\sqrt{n}} \Bigg) \]
+La realizzazione di quest'intervallo è data da:
+\[ \Bigg( \overline{x}_{n} - t_{\frac{\alpha}{2},n-1}^{+} \cdot \frac{s_{n}}{\sqrt{n}} \; \; \; \; ; \; \; \; \; \overline{x}_{n} + t_{\frac{\alpha}{2},n-1}^{+} \cdot \frac{s_{n}}{\sqrt{n}} \Bigg) \]
+dove:
+\[ \overline{x}_{n} = \frac{1}{n} \sum_{k=1}^{n}x_{k} = 0.8 \]
+\[ s_{n}^{2} = \frac{1}{n-1} \sum_{k=1}^{n}(x_{k}-\overline{x}_{n})^{2} = 2.95 \implies s_{n} = 1.72 \]
+\[ t_{\frac{\alpha}{2},n-1}^{+} = t_{1-\frac{\alpha}{2},n-1}^{-} = t_{0.995 \; , \; 4}^{-} = 4.604 \; \; (vedere \; apposita \; tabella) \]
+L'intervallo dunque è:
+\[ \Big( 0.8 - 4.604 \cdot \frac{1.72}{2.24} \; \; \; \; ; \; \; \; \; 0.8 + 4.604 \cdot \frac{1.72}{2.24} \Big) \; \; \equiv \; \; (-2.74 \; ; \; 4.34) \]
+\\
+2) L'intervallo di confidenza per $\sigma^{2}$ è dato da:
+\[ \Bigg( \frac{(n-1)S_{n}^{2}}{\chi_{n-1,\frac{\alpha}{2}}^{2,+}} \; \; \; \; ; \; \; \; \; \frac{(n-1)S_{n}^{2}}{\chi_{n-1,\frac{\alpha}{2}}^{2,-}} \Bigg) \]
+La realizzazione di quest'intervallo è data da:
+\[ \Bigg( \frac{(n-1)s_{n}^{2}}{\chi_{n-1,\frac{\alpha}{2}}^{2,+}} \; \; \; \; ; \; \; \; \; \frac{(n-1)s_{n}^{2}}{\chi_{n-1,\frac{\alpha}{2}}^{2,-}} \Bigg) \]
+dove:
+\[ \chi_{n-1,\frac{\alpha}{2}}^{2,+} = \chi_{n-1,1-\frac{\alpha}{2}}^{2,-} = \chi_{4 \; , \; 0.95}^{2,-} = 9.4888 \; \; (vedere \; apposita \; tabella) \]
+\[ \chi_{n-1,\frac{\alpha}{2}}^{2,-} = \chi_{4 \; , \; 0.05}^{2,-} = 0.711 \; \; (vedere \; apposita \; tabella) \]
+L'intervallo dunque è:
+\[ \Big( \frac{4 \cdot 2.95}{9.488} \; \; \; \; ; \; \; \; \; \frac{4 \cdot 2.95}{0.711} \Big) \; \; \equiv \; \; (1.24 \; ; \; 16.60) \]
+Per passare alla deviazione standard $\sigma$, basta estrarre la radice quadrata dei due estremi dell'intervallo:
+\[ (1.11 \; ; \; 4.07) \]
+
+\end{document}

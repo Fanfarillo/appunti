@@ -1,0 +1,932 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\graphicspath{ {C:/Users/barba/OneDrive/Immagini/Screenshot} }
+\begin{document}
+\section*{Introduzione alla probabilità}
+\subsection*{Definizione}
+Un \textbf{sample space} $\Omega$ di un esperimento randomico è l'insieme di tutti i possibili esiti dell'esperimento la cui occorrenza o non occorrenza può essere stabilita in modo non ambiguo da un osservatore.
+
+\subsection*{Definizione}
+Un \textbf{evento} è un qualunque insieme di esiti che si può realizzare; è dunque un qualunque sottoinsieme del sample space.
+
+\subsection*{Definizione}
+Un'\textbf{informazione} (o \textbf{$\sigma$-algebra degli eventi}) è una particolare famiglia di eventi che gode di particolari proprietà (che sono elencate di seguito).
+
+\subsection*{Proprietà di un'algebra degli eventi $\mathcal{E}$}
+1) $\mathcal{E} \neq \emptyset \iff \emptyset \in \mathcal{E}$\\
+2) Se $E_{1}, E_{2} \in \mathcal{E} \implies E_{1} \cup E_{2} \in \mathcal{E}$\\
+3) Se $E \in \mathcal{E} \implies E^{c} \in \mathcal{E}$
+
+\subsection*{Proprietà di una $\sigma$-algebra degli eventi $\mathcal{E}$}
+1) $\mathcal{E} \neq \emptyset \iff \emptyset \in \mathcal{E}$\\
+2) $(E_{n})_{n \in \mathbb{N}} : E_{n} \in \mathcal{E} \implies \bigcup_{n=1}^{+\infty}E_{n} \in \mathcal{E}$\\
+3) Se $E \in \mathcal{E} \implies E^{c} \in \mathcal{E}$
+
+\subsection*{Proposizione}
+Consideriamo la partizione di eventi $\mathcal{P} \equiv \{E_{j}\}_{j \in N}$, dove $E_{j}$ appartiene a una certa $\sigma$-algebra $\mathcal{E}$ e $E_{j1} \cap E_{j2} = \emptyset \; \; \forall j_{1} \neq j_{2}$. Assumiamo che la partizione $\mathcal{P}$ sia numerabile. Allora la $\sigma$-algebra generata da $\mathcal{P}$ (che indichiamo con $\sigma(\mathcal{P})$) è la famiglia di tutti gli eventi che possiamo scrivere come l'unione di un insieme di pezzi di $\mathcal{P}$. In simboli:
+\[ \sigma(\mathcal{P}) = \Big\{E = \bigcup_{j\in J}^{}E_{j} \; , \; J \subseteq N \Big\} \]
+
+\section*{Funzione di probabilità}
+\`E una funzione P: $\mathcal{E} \to \mathbb{R}^+$ che, a seconda se $\mathcal{E}$ è un'algebra o una $\sigma$-algebra, gode di determinate proprietà.
+\begin{itemize}
+\item Se $\mathcal{E}$ è un'algebra:\\
+	1) $P(\emptyset) = 0$\\
+	2) $P(\Omega) = 1$\\
+	3) $P(A\cup B) = P(A)+P(B) \; \; \; \forall A, B \in \mathcal{E} : A \cap B = \emptyset$
+\item Se $\mathcal{E}$ è una $\sigma$-algebra:\\
+	1) $P(\emptyset) = 0$\\
+	2) $P(\Omega) = 1$\\
+	3) $P(\bigcup_{n=1}^{+\infty}A_{n}) = \sum_{n=1}^{+\infty}P(A_{n}) \; \; \; \forall (A_{n})_{n \in \mathbb{N}} : A_{n1} \cap A_{n2} = \emptyset \; \; \forall n_{1} \neq n_{2}$
+\end{itemize}
+
+\section*{Indipendenza}
+Due eventi E, F si dicono indipendenti se:
+\[ P(E \cap F) = P(E)\cdot P(F) \]
+Inoltre, due famiglie $\mathcal{E}, \mathcal{F}$ di eventi si dicono indipendenti se:
+\[ P(E \cap F) = P(E)\cdot P(F) \; \; \; \; \forall E \in \mathcal{E} \; \; \forall F \in \mathcal{F} \]
+
+\subsection*{Insieme di eventi indipendenti}
+Supponiamo di avere tanti eventi $(E_{j})_{j\in J}$. Questi sono:
+\begin{itemize}
+\item Indipendenti pairwise se $P(E_{j1} \cap E_{j2}) = P(E_{j1})\cdot P(E_{j2})$\\
+$\forall j_{1}, j_{2} \in J : j_{1} \neq j_{2}$
+\item Indipendenti totalmente se $P(\bigcap_{k=1}^{n}E_{jk}) = \prod_{k=1}^{n}P(E_{jk})$\\
+$\forall \{j_{1},...,j_{n}\} \subseteq J$
+\end{itemize}
+Se gli eventi sono indipendenti totalmente, allora sono anche indipendenti pairwise. Tuttavia, non vale il viceversa.
+
+\section*{Probabilità condizionata}
+\subsection*{Definizione}
+\[ P(F) > 0 \implies P(E|F) = \frac{P(E\cap F)}{P(F)} \]
+
+\subsection*{Formula di simmetria}
+\[ P(E), P(F) > 0 \implies P(E|F) = \frac{P(F|E)\cdot P(E)}{P(F)} \]
+
+\subsection*{Formula della probabilità totale}
+Sia N $\subseteq \mathbb{N}$ e sia (F$_{n})_{n \in N}$ una partizione di $\Omega$. Abbiamo:
+\[ P(E) = \sum_{n \in N}^{}P(E|F_{n})\cdot P(F_{n}) \; \; \; \; \forall E \in \mathcal{E} \]
+
+\subsection*{Teorema di Bayes}
+\[ P(A_{i}|E) = \frac{P(E|A_{i})P(A_{i})}{\sum_{j=1}^{n}P(E|A_{j})P(A_{j})} \]
+
+\section*{Variabile aleatoria reale}
+\`E una funzione $X: \Omega \to \mathbb{R}$ definita su uno spazio di probabilità $(\Omega, \mathcal{E}, P)$.\\
+Dato lo spazio ($\mathbb{R}, \mathcal{B}(\mathbb{R})$), per una variabile aleatoria deve valere:
+\[ \forall B \in \mathcal{B}(\mathbb{R}) \; \; \; \; \{X \in B\} = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{E} \]
+
+\section*{Distribuzione}
+\`E una funzione di probabilità $P_{X}: \mathcal{B}(\mathbb{R}) \to \mathbb{R}^+$ definita sull'asse reale:
+\[ P_{X}(B) = P(X \in B) \]
+
+\section*{Funzione di distribuzione}
+\`E una funzione $F_{X}: \mathbb{R} \to \mathbb{R}$ definita come:
+\[ F_{X}(x) = P_{X}((-\infty, x]) = P(X \leq x) \]
+
+\subsection*{Proprietà della funzione di distribuzione}
+1) $F_{X}(x) \geq 0 \; \; \; \forall x \in \mathbb{R}$\\
+2) $\lim_{x\to +\infty}F_{X}(x) = 1$\\
+3) $\lim_{x\to -\infty}F_{X}(x) = 0$\\
+4) $F_{X}(x) \leq F_{X}(y) \; \; \; \forall x \leq y$\\
+5) $\lim_{x\to x_{0}^{+}}F_{X}(x) = F_{X}(x_{0})$\\
+6) $\lim_{x\to x_{0}^{-}}F_{X}(x) \in \mathbb{R}$\\
+7) Il numero di punti di discontinuità di $F_{X}$ è al più numerabile.
+
+\section*{Funzione di densità}
+La funzione di distribuzione $F_{X}$ di una variabile aleatoria X è \textbf{assolutamente continua} se:
+\[ F_{X}(x) = \int_{(-\infty,x]}^{}F_{X}'(u) \; d\mu_{L}(u) \]
+Quando ciò è verificato, possiamo definire la funzione di densità $f_{X}: \mathbb{R} \to \mathbb{R}$ come:
+\[
+\begin{cases}
+F_{X}'(x) \; \; \; dove \; F_{X}'(x) \; e\grave \; \; differenziabile\\
+Valore \; arbitrario \; altrove
+\end{cases}
+\]
+
+\subsection*{Proprietà della funzione di densità}
+1) $f_{X}(x) \geq 0 \; \; \; \forall x \in \mathbb{R}$\\
+2) $\int_{\mathbb{R}}^{}f_{X}(x) \; d\mu_{L}(x) = 1$
+
+\subsection*{Condizione sufficiente per l'assoluta continuità di $F_{X}$}
+\begin{itemize}
+\item $F_{X}'(x)$ esiste ovunque
+\item $|F_{X}'(x)| < L \; \; \; \forall x \in \mathbb{R}$
+\end{itemize}
+
+\section*{Mediana di una variabile aleatoria}
+\`E un valore $x \in \mathbb{R}$ tale che $P(X \leq x) \geq \frac{1}{2}$ e $P(X \geq x) \geq \frac{1}{2}$\\
+Se $F_{X}(x)$ è continua $\implies$ la mediana x è unica e $P(X \leq x) =  P(X \geq x) = \frac{1}{2}$\\
+Noi scriviamo $Q_{\frac{1}{2}} := \{x \in \mathbb{R} : P(X \leq x) \geq \frac{1}{2} \wedge P(X \geq x) \geq \frac{1}{2}\}$
+
+\subsection*{Proposizione}
+Un numero reale x è una mediana della variabile aleatoria X se e solo se:
+\begin{itemize}
+\item $F_{X}(x) \geq \frac{1}{2}$
+\item $\lim_{u\to x^{-}}F_{X}(u) \leq \frac{1}{2}$
+\end{itemize}
+
+\subsection*{Proposizione}
+$Q_{\frac{1}{2}}$ è sempre un insieme non vuoto (ovvero esiste sempre almeno una mediana per una variabile aleatoria).
+
+\subsection*{Proposizione}
+Se una variabile aleatoria X è simmetrica rispetto al punto $x_{0} \implies$\\
+$P(X \leq x_{0}) = P(X \geq x_{0})$
+
+\section*{Quantile di una variabile aleatoria}
+Dato un qualunque valore q $\in$ (0,1), chiamiamo quantile di ordine q (o q-quantile) della variabile aleatoria X un valore x $\in \mathbb{R}$ tale che $P(X \leq x) \geq q$ e $P(X \geq x) \geq 1-q$.\\
+In particolare, se $\int_{(-\infty, x_{q}]}^{}f_{X}(x) \; d\mu_{L}(x) = q \implies x_{q}$ è un quantile di ordine q.
+
+\subsection*{Proposizione}
+Se una variabile aleatoria ha funzione di distribuzione continua e strettamente crescente, allora il quantile (di ordine q) è unico e possiamo definire la \textbf{funzione quantile} $Q_{X}$ come l'inversa della funzione di distribuzione stessa ($Q_{X} := F_{X}^{-1}$).
+
+\section*{Valori critici di livello $\alpha$}
+Sono due punti $x_{\alpha}^{+}, x_{\alpha}^{-}$ tali che:
+\begin{itemize}
+\item $\int_{[x_{\alpha}^{+}, +\infty)}^{}f_{X}(x) \; d\mu_{L}(x) = \alpha$
+\item $\int_{(-\infty, x_{\alpha}^{-}]}^{}f_{X}(x) \; d\mu_{L}(x) = \alpha$
+\end{itemize}
+In particolare, $x_{\alpha}^{-} = \alpha$-quantile e $x_{\alpha}^{+} = (1-\alpha)$-quantile.
+
+\section*{Media di una variabile aleatoria discreta finita}
+Sia X una variabile aleatoria discreta finita ($X(\Omega) = (x_{k})_{k=1}^{n}$).\\
+\[ \mathbb{E}[X] = \sum_{k=1}^{n}p_{k}\cdot x_{k} \; , \; dove \; p_{k} = P(X = x_{k}) \]
+
+\section*{Media di una variabile aleatoria discreta infinita}
+Sia X una variabile aleatoria discreta infinita ($X(\Omega) = (x_{n})_{n=1}^{+\infty}$).\\
+X ammette media se $\sum_{n=1}^{+\infty}p_{n}\cdot |x_{n}| < +\infty$ , dove $p_{n} = P(X = x_{n})$.\\
+In tal caso:
+\[ \mathbb{E}[X] = \sum_{n=1}^{+\infty}p_{n}\cdot x_{n} \]
+
+\section*{Media di una variabile aleatoria continua}
+Sia X una variabile aleatoria continua ($X(\Omega) = \mathbb{R}$).\\
+X ammette media se $\int_{\Omega}^{}|X| \; dP < +\infty$\\
+In tal caso:
+\[ \mathbb{E}[X] = \int_{\Omega}^{}X^{+} \; dP - \int_{\Omega}^{}X^{-} \; dP \]
+\begin{itemize}
+\item $X^{+}(\omega) = max\{X(\omega), 0\} = \frac{|X(\omega)|+X(\omega)}{2}$
+\item $X^{-}(\omega) = -min\{X(\omega), 0\} = \frac{|X(\omega)|-X(\omega)}{2}$
+\end{itemize}
+In particolare, se $F_{X}(x)$ è assolutamente continua, la media di X esiste se\\
+$\int_{\mathbb{R}}^{}|x|\cdot f_{X}(x) \; d\mu_{L}(x) < +\infty$ , ed è data da:
+\[ \mathbb{E}[X] = \int_{\mathbb{R}}^{}x\cdot f_{X}(x) \; d\mu_{L}(x) \]
+Inoltre, se X ammette media (ovvero X ammette \textbf{momento di ordine 1} finito) $\implies X \in \mathcal{L}^{1}(\Omega; \mathbb{R})$
+
+\subsection*{Proprietà di $\mathcal{L}^{1}(\Omega; \mathbb{R})$}
+1) $X \in \mathcal{L}^{1}(\Omega; \mathbb{R}) \implies |X| \in \mathcal{L}^{1}(\Omega; \mathbb{R})$\\
+2) $|\mathbb{E}[X]| \leq \mathbb{E}[|X|]$\\
+3) $X,Y \in \mathcal{L}^{1}(\Omega; \mathbb{R}) \implies \alpha X+\beta Y \in \mathcal{L}^{1}(\Omega; \mathbb{R}) \wedge \mathbb{E}[\alpha X+\beta Y] = \alpha \mathbb{E}[X]+\beta \mathbb{E}[Y]$\\
+4) Se $X \leq Y \implies \mathbb{E}[X] \leq \mathbb{E}[Y]$\\
+5) Se $X^{n} \in \mathcal{L}^{1}(\Omega; \mathbb{R}) \implies X \in \mathcal{L}^{n}(\Omega; \mathbb{R})$ (ovvero X ammette \textbf{momento di ordine n} finito)
+
+\section*{Momento crudo di una variabile aleatoria}
+Sia $X \in \mathcal{L}^{n}(\Omega; \mathbb{R})$. Il momento crudo di ordine n si definisce come:
+\[ \mu_{n}' := \mathbb{E}[X^{n}] \]
+Se $n=1 \implies \mathbb{E}[X] \equiv \mu_{1}' \equiv \mu$
+
+\section*{Momento centrato di una variabile aleatoria}
+Sia $X \in \mathcal{L}^{n}(\Omega; \mathbb{R})$. Il momento centrato di ordine n si definisce come:
+\[ \mu_{n} := \mathbb{E}[(X - \mathbb{E}[X])^{n}] \]
+Se $n=1 \implies \mathbb{E}[X - \mathbb{E}[X]] = \mathbb{E}[X] - \mathbb{E}[\mathbb{E}[X]] = \mathbb{E}[X] - \mathbb{E}[X] = 0 = \mu_{1}$\\
+Se $n=2 \implies \mathbb{E}[(X - \mathbb{E}[X])^{2}] \equiv \mathbb{D}^{2}[X] \equiv \mbox{Var}(X) \equiv \sigma_{X}^{2} \equiv \mu_{2} \equiv$ Varianza di X\\
+In particolare: $\mathbb{E}[(X - \mathbb{E}[X])^{2}] = \mathbb{E}[X^{2} - 2X\cdot \mathbb{E}[X] + \mathbb{E}^{2}[X]] =$\\
+$= \mathbb{E}[X^{2}] - 2\mathbb{E}[X\cdot \mathbb{E}[X]] + \mathbb{E}[\mathbb{E}^{2}[X]] = \mathbb{E}[X^{2}] - 2\mathbb{E}[X]\cdot \mathbb{E}[X] + \mathbb{E}^{2}[X] = \mathbb{E}[X^{2}] - \mathbb{E}^{2}[X]$
+
+\subsection*{Proprietà della varianza}
+1) $\mathbb{D}^{2}[X] \geq 0$\\
+2) $\mathbb{D}^{2}[X] = 0 \iff \mathbb{E}[(X - \mathbb{E}[X])^{2}] = 0 \iff X \sim Dirac(\mathbb{E}[X])$
+
+\section*{Momento standardizzato di una v.a.}
+Sia $X \in \mathcal{L}^{n}(\Omega; \mathbb{R})$, con $n \geq 2$. Il momento standardizzato di ordine n si definisce come:
+\[ \hat{\mu}_{n} := \mathbb{E}\Big[ \Big( \frac{X-\mu}{\sigma_{X}}\Big)^{n}\Big] \]
+Se $n=2 \implies \mathbb{E}[(\frac{X-\mu}{\sigma_{X}})^{2}] = \mathbb{D}^{2}[\frac{X-\mu}{\sigma_{X}}] = \frac{1}{\sigma_{X}^{2}}\cdot \mathbb{D}^{2}[X-\mu] = \frac{1}{\sigma_{X}^{2}}\cdot \mathbb{D}^{2}[X] = 1 = \hat{\mu}_{2}$\\
+$\hat{\mu}_{3}$ è detto \textbf{skewness} (asimmetria) e misura quanto pesa la parte negativa della distribuzione di X rispetto a quella positiva.\\
+$\hat{\mu}_{4}$ è detto \textbf{curtosi} e compara le code della distribuzione di X con quelle di una distribuzione normale. Per le variabili aleatorie normali o \textbf{mesocurtiche}, $\hat{\mu}_{4} = 3$; per le variabili aleatorie \textbf{leptocurtiche} (più con le code meno spesse delle normali), $\hat{\mu}_{4} > 3$; per le variabili aleatorie \textbf{platicurtiche} (con le code più spesse delle normali), $\hat{\mu}_{4} < 3$.
+
+\section*{Covarianza di due variabili aleatorie}
+\[ Cov(X,Y) = \mathbb{E}[(X - \mathbb{E}[X])\cdot (Y - \mathbb{E}[Y])] = \mathbb{E}[XY] - \mathbb{E}[X]\cdot \mathbb{E}[Y] \]
+
+\subsection*{Proprietà della covarianza}
+1) $Cov(X,X) = \mathbb{D}^{2}[X]$\\
+2) $Cov(X,Y) = Cov(Y,X) \; \; \forall X,Y \in \mathcal{L}^{2}(\Omega; \mathbb{R})$\\
+3) $Cov(\alpha X + \beta Y, \; Z) = \alpha \cdot Cov(X,Z) + \beta \cdot Cov(Y,Z) \; \; \forall X,Y,Z \in \mathcal{L}^{2}(\Omega; \mathbb{R})$\\
+4) $|Cov(X,Y)| \leq \mathbb{D}[X] \mathbb{D}[Y]$
+
+\section*{Prima disuguaglianza di Markov}
+Sia $X \geq 0$ una variabile aleatoria che ammette momento di ordine 1 finito e supponiamo che $\mathbb{E}[X] > 0$. Allora:
+\[ P(X \geq \lambda \mathbb{E}[X]) \leq \frac{1}{\lambda} \]
+
+\subsection*{Corollario}
+\[ P(X \geq k) \leq \frac{\mathbb{E}[X]}{k} \]
+
+\section*{Seconda disuguaglianza di Markov}
+Sia X una variabile aleatoria e sia $\varphi : \mathbb{R} \to \mathbb{R}$ una funzione boreliana non decrescente. Allora:
+\[ \varphi(x)\cdot P(X \geq x) \leq \mathbb{E}[\varphi(X)] \; \; \; \; \forall x \in \mathbb{R} \]
+
+\section*{Disuguaglianza di Tchebyshev}
+Sia X una qualunque variabile aleatoria e sia $\varphi : \mathbb{R} \to \mathbb{R}$ una funzione boreliana, positiva e tale che:
+\begin{itemize}
+\item $\varphi(x) = \varphi(-x) \; \; \forall x \in \mathbb{R}$
+\item $\varphi(x) \leq \varphi(y) \; \; \forall x,y : 0 \leq x \leq y$
+\item $\varphi(X)$ sia una variabile aleatoria che ammette momento di ordine 1 finito.
+\end{itemize}
+Allora:
+\[ \varphi(x)\cdot P(|X| \geq x) \leq \mathbb{E}[\varphi(X)] \; \; \; \; \forall x \geq 0 \]
+
+\subsection*{Corollario}
+\[ P(|X - \mathbb{E}[X]| \geq x) \leq \frac{\mathbb{D}^{2}[X]}{x^{2}} \]
+
+\subsection*{Corollario}
+Sia X una variabile aleatoria che ammette momento di ordine 2 finito, e siano $a,b \in \mathbb{R} \; \; t.c. \; \; a<\mathbb{E}[X]<b$. Allora:
+\[ P(a<X<b) \geq 1 - \frac{\mathbb{D}^{2}[X]}{k^{2}} \]
+dove $k = min\{ \mathbb{E}[X]-a, \; \; b-\mathbb{E}[X]\}$
+
+\section*{Disuguaglianza di H\"older}
+Siano p, q due esponenti coniugati (ovvero tali che $\frac{1}{p}+\frac{1}{q} = 1$) e siano\\
+$X \in \mathcal{L}^{p}(\Omega; \mathbb{R}), \; Y \in \mathcal{L}^{q}(\Omega; \mathbb{R})$. Allora:
+\[ \mathbb{E}[|XY|] \leq \mathbb{E}[|X|^{p}]^{\frac{1}{p}} \cdot \mathbb{E}[|Y|^{q}]^{\frac{1}{q}} \]
+
+\subsection*{Proposizione}
+Due variabili aleatorie X,Y sono dette \textbf{ortogonali} se:
+\[ \mathbb{E}[XY] = \int_{\Omega}^{}XY \; dP = 0 \]
+
+\section*{$\mathcal{E}$-vettore aleatorio}
+\`E una funzione $X: \Omega \to \mathbb{R}^{N}$  definita su uno spazio di probabilità $(\Omega, \mathcal{E}, P)$.\\
+Dato lo spazio degli stati ($\mathbb{R}^{N}, \mathcal{B}(\mathbb{R}^{N})$), per un $\mathcal{E}$-vettore aleatorio deve valere:
+\[ \forall B \in \mathcal{B}(\mathbb{R}^{N}) \; \; \; \; \{X \in B\} = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{E} \]
+In particolare, $X = (X_{1},..., X_{N})$ è un $\mathcal{E}$-vettore aleatorio $\iff X_{1},..., X_{N}$ sono $\mathcal{E}$-variabili aleatorie.
+
+\section*{Funz. di distribuz. di un $\mathcal{E}$-vettore aleatorio}
+\`E una funzione $F_{X}: \mathbb{R}^{N} \to \mathbb{R}$ definita come:
+\[ F_{X}(x_{1},..., x_{N}) = P(X_{1} \leq x_{1},..., X_{N} \leq x_{N}) \]
+
+\subsection*{Proprietà della funz. di distribuz. di un $\mathcal{E}$-vettore aleatorio}
+1) $\lim_{x_{1}\to +\infty}...\lim_{x_{N}\to +\infty}F_{X}(x_{1},..., x_{N}) = 1$\\
+2) $\lim_{x_{k}\to -\infty}F_{X}(x_{1},..., x_{k},..., x_{N}) = 0$\\
+3) Se mandiamo a $+\infty$ tutte le variabili di $F_{X}$ tranne $x_{k}$, otteniamo la funzione di distribuzione (monodimensionale) della $\mathcal{E}$-variabile aleatoria $X_{k}$.
+
+\section*{Densità di un $\mathcal{E}$-vettore aleatorio}
+La funzione di distribuzione $F_{X}$ di un $\mathcal{E}$-vettore aleatorio X è \textbf{assolutamente continua} se:
+\[ F_{X}(x_{1},..., x_{N}) = \int_{\prod_{k=1}^{N}(-\infty,x_{k}]}^{}\frac{\partial^{N}F_{X}(u_{1},..., u_{N})}{\partial u_{1},...,\partial u_{N}} \; d\mu_{L}^{N}(u_{1},..., u_{N}) \]
+Quando ciò è verificato, possiamo definire la funzione di densità $f_{X}: \mathbb{R}^{N} \to \mathbb{R}$ come:
+\[ f_{X}(x_{1},..., x_{N}) := \frac{\partial^{N}F_{X}(x_{1},..., x_{N})}{\partial x_{1},...,\partial x_{N}} \]
+
+\section*{Media di un $\mathcal{E}$-vettore aleatorio}
+Un $\mathcal{E}$-vettore aleatorio $X = (X_{1},...,X_{N})$ ammette momento di ordine 1 finito se:
+\[ \int_{\Omega}^{}||X||_{2} \; dP < +\infty \; , \; dove \; ||X||_{2} = \sqrt{\sum_{k=1}^{N}X_{k}^{2}} \]
+In tal caso abbiamo:
+\[ \mathbb{E}[X] = \mathbb{E}[(X_{1},..., X_{N})] = (\mathbb{E}[X_{1}],..., \mathbb{E}[X_{N}]) \]
+
+\subsection*{Proposizione}
+$X = (X_{1},...,X_{N})$ ammette momento di ordine 1 finito se $X_{1},..., X_{N}$ ammettono tutte momento di ordine 1 finito.
+
+\section*{Varianza di un $\mathcal{E}$-vettore aleatorio}
+Un $\mathcal{E}$-vettore aleatorio $X = (X_{1},...,X_{N})$ ammette momento di ordine 2 finito se:
+\[ \int_{\Omega}^{}||X||_{2}^{2} \; dP < +\infty \; , \; dove \; ||X||_{2} = \sqrt{\sum_{k=1}^{N}X_{k}^{2}} \]
+In tal caso possiamo definire la varianza di X come:
+\[ \mathbb{D}^{2}[X] = \left[\begin{matrix} \mathbb{D}^{2}[X_{1}] & Cov(X_{1},X_{2}) & \cdots & Cov(X_{1},X_{N}) \\ Cov(X_{2},X_{1}) & \mathbb{D}^{2}[X_{2}] & \cdots & Cov(X_{2},X_{N}) \\ \vdots & \vdots & \ddots & \vdots \\ Cov(X_{N},X_{1}) & Cov(X_{N},X_{2}) & \cdots & \mathbb{D}^{2}[X_{N}] \end{matrix}\right] \]
+Si tratta di una matrice simmetrica e semi-definita positiva (cioè ha tutti gli autovalori positivi).
+
+\subsection*{Proposizione}
+$X = (X_{1},...,X_{N})$ ammette momento di ordine 2 finito se tutti i possibili prodotti $X_{j}\cdot X_{k}$ ammettono momento di ordine 1 finito $\forall j, k = 1,...,N$.
+
+\section*{Indipendenza di variabili aleatorie}
+Due variabili aleatorie X, Y si dicono indipendenti se:
+\[ P(X \leq x, \; Y \leq y) = P(X \leq x)\cdot P(Y \leq y) \]
+Inoltre, una variabile aleatoria X è indipendente da una famiglia $\mathcal{F}$ di eventi se:
+\[ \forall E \in \sigma(X) \; \; \forall F \in \mathcal{F} \; \; P(E \cap F) = P(E)\cdot P(F) \]
+dove $\sigma(X)$ è l'informazione (o meglio la $\sigma$-algebra degli eventi) generata da X.
+
+\subsection*{Proposizione}
+Due variabili aleatorie X, Y sono indipendenti $\iff \sigma(X), \sigma(Y)$ sono indipendenti, ovvero:
+\[ \forall E \in \sigma(X) \; \; \forall F \in \sigma(Y) \; \; P(E \cap F) = P(E)\cdot P(F) \]
+
+\subsection*{Proposizione}
+Siano X, Y due variabili aleatorie indipendenti, e siano $g: \mathbb{R} \to \mathbb{R}, \; h: \mathbb{R} \to \mathbb{R}$ due funzioni boreliane. Allora g(X), h(Y) sono a loro volta variabili aleatorie indipendenti.
+
+\subsection*{Insieme di variabili aleatorie indipendenti}
+Supponiamo di avere tante variabili aleatorie $(X_{j})_{j \in J}$. Queste sono:
+\begin{itemize}
+\item Indipendenti pairwise se $X_{j1}, X_{j2}$ sono indipendenti $\forall  j_{1}, j_{2} \in J : j_{1} \neq j_{2}$
+\item Indipendenti totalmente se\\
+$P(X_{j1} \leq x_{j1},...,X_{jn} \leq x_{jn}) = \prod_{k=1}^{n}P(X_{jk} \leq x_{jk}) \; \; \forall \{j_{1},...,j_{n}\} \subseteq J$
+\end{itemize}
+
+\section*{Funzione di distribuzione congiunta}
+\`E una funzione così definita:
+\[ F_{X,Y}(x,y) = P(X \leq x, \; Y \leq y) \]
+Inoltre, abbiamo che:
+\[ F_{X,Y}(x,y) = F_{X}(x)\cdot F_{Y}(y) \iff X, Y \; sono \; indipendenti \]
+
+\subsection*{Proposizione}
+Consideriamo una funzione di distribuzione congiunta $F_{X,Y}(x,y)$ assolutamente continua. Allora:
+\begin{itemize}
+\item X è una variabile aleatoria assolutamente continua e ha densità $f_{X}(x)$.
+\item Y è una variabile aleatoria assolutamente continua e ha densità $f_{Y}(y)$.
+\item \`E possibile definire la \textbf{densità congiunta} $f_{X,Y}(x,y)$.
+\end{itemize}
+Non vale il viceversa: se due variabili aleatorie X, Y sono assolutamente continue, non è detto che anche $F_{X,Y}(x,y)$ sia assolutamente continua (a meno che X, Y sono indipendenti).
+
+\subsection*{Proposizione}
+X, Y sono variabili aleatorie indipendenti $\iff f_{X,Y}(x,y) = f_{X}(x)\cdot f_{Y}(y)$.
+
+\subsection*{Proposizione}
+Se X, Y sono variabili aleatorie indipendenti $\implies \mathbb{E}[XY] =  \mathbb{E}[X]\cdot  \mathbb{E}[Y] \implies Cov(X,Y) = 0$
+
+\section*{Vettori gaussiani}
+Siano $X_{1},...,X_{N}$ variabili aleatorie reali e sia $X := (X_{1},...,X_{N})^{T}$. X si dice gaussiano se:
+\[ \forall (c_{1},...,c_{N}) \in \mathbb{R}^{N} \; \; \; \sum_{k=1}^{N} c_{k}X_{k} \sim N(\mu,\sigma^{2}) \]
+\`E possibile anche avere $\sigma^{2} = 0$ (ovvero delle distribuzioni di Dirac, che possiamo considerare come un caso degenere delle distribuzioni gaussiane).
+
+ \subsection*{Criteri}
+1) Basta trovare una sola combinazione lineare che non dia luogo a una distribuzione gaussiana per stabilire che X non è un vettore gaussiano.\\
+\\
+2) X è un vettore gaussiano se tutte le sue componenti $X_{1},...,X_{N}$ sono variabili aleatorie gaussiane indipendenti tra loro (ma il viceversa non è vero).\\
+\\
+3) Sia $(X_{1},...,X_{N})^{T}$ un vettore gaussiano, sia $A \equiv (a_{m,n})_{m=1,n=1}^{M,N}$ una matrice con M righe e N colonne, e sia b $\in \mathbb{R}^{M}$ un vettore. Allora il vettore $(Y_{1},...,Y_{M})^{T}$ dato da:
+\[ (Y_{1},...,Y_{M})^{T} := b+A\cdot (X_{1},...,X_{N})^{T} \]
+ è a sua volta un vettore gaussiano se A ha rango massimo (ovvero se $rank(A) = min\{M,N\}$).\\
+\\
+4) Sia $(X_{1},...,X_{N})^{T}$ un vettore gaussiano (con $X_{1},...,X_{N}$ variabili aleatorie gaussiane standard indipendenti), sia $A \equiv (a_{m,n})_{m=1,n=1}^{M,N}$ una matrice con M righe e N colonne, e sia $\mu \in \mathbb{R}^{M}$ un vettore. Allora il vettore $(Y_{1},...,Y_{M})^{T}$ dato da:
+\[ (Y_{1},...,Y_{M})^{T} := \mu+A\cdot (X_{1},...,X_{N})^{T} \]
+ è a sua volta un vettore gaussiano.
+\begin{itemize}
+\item Vettore delle medie: $\mu \equiv (\mu_{1},...,\mu_{M})^{T}: \mu_{k} = \mathbb{E}[Y_{k}] \; \; \forall k = 1,...,M$
+\item Matrice delle covarianze: $AA^{T} \equiv (\sigma_{m,n})_{m,n=1}^{M} \equiv \Sigma^{2}\sigma_{m,n} \equiv Cov(Y_{m},Y_{n})$
+\end{itemize}
+
+\subsection*{Proposizione}
+Se le variabili aleatorie $X_{1},...,X_{N}$ che costituiscono il vettore gaussiano X sono scorrelate, allora sono anche indipendenti.
+
+\subsection*{Proposizione}
+Se il vettore gaussiano $X = (X_{1},...,X_{N})^{T}$ è non degenere (ovvero nessuna combinazione lineare delle sue componenti dà luogo a una distribuzione di Dirac), allora:
+\begin{itemize}
+\item è assolutamente continuo;
+\item $f_{X1,...,XN}(x_{1},...,x_{N}) = \frac{1}{\sqrt{(2\pi)^{N}\cdot \det(\Sigma^{2})}}\cdot e^{-\frac{1}{2}(x-\mu)^{T}(\Sigma^{2})^{-1}(x-\mu)}$
+\end{itemize}
+
+\section*{Condizionamento di variabili aleatorie}
+Sia $X \in \mathcal{L}^{1}(\Omega, \mathbb{R})$ una variabile aleatoria e sia $F \in \mathcal{E}$ un evento. Definiamo il condizionamento di X rispetto a F ($\mathbb{E}[X|F]$) nel seguente modo:
+\[
+\begin{cases}
+0 \; \; \; \; se \; P(F) = 0\\
+\frac{1}{P(F)} \int_{F}^{}X \; dP \; \; \; \; altrimenti
+\end{cases}
+\]
+In particolare, se F è un insieme discreto ($F = \{\omega_{1},..,\omega_{n}\}$) tale che $P(F) > 0$:
+\[ \mathbb{E}[X|F] = \frac{1}{P(F)} \sum_{k=1}^{n}X(\omega_{k}) P(\omega_{k}) \]
+
+\subsection*{Teorema di Radon Nykodim}
+Sia $P_{\mathcal{F}}^{X}: \mathcal{F} \to \mathbb{R}$ una funzione così definita:
+\[ P_{\mathcal{F}}^{X}(F) = \int_{F}^{}X dP \; \; , \; \; dove \; X \in \mathcal{L}^{1}(\Omega, \mathbb{R}) \]
+Allora:
+\begin{itemize}
+\item $P_{\mathcal{F}}^{X}(\bigcup_{n=1}^{+\infty}F_{n}) = \int_{\bigcup_{n=1}^{+\infty}F_{n}}^{}X dP = \sum_{n=1}^{+\infty} \int_{F_{n}}^{}X dP = \sum_{n=1}^{+\infty}P_{\mathcal{F}}^{X}(F_{n}) $\\ \\
+$(con \; F_{n1} \cap F_{n2} = \emptyset \; \; \; \forall n_{1} \neq n_{2})$
+\item Se X è una variabile aleatoria assolutamente continua $\implies$\\
+$P_{\mathcal{F}}^{X}(F) = 0 \; \; \forall F : P(F) = 0$
+\item $\exists \hat{X}$ tale che $\int_{F}^{}X dP = \int_{F}^{}\hat{X} dP_{\mathcal{F}}^{X}$  ,  dove $\hat{X}$ è una $\mathcal{F}$-variabile aleatoria.
+\end{itemize}
+
+\subsection*{Condizionamento rispetto a una famiglia di eventi}
+Sia X una $\mathcal{E}$-variabile aleatoria tale che $X \in \mathcal{L}^{1}(\Omega, \mathbb{R})$ e sia $\mathcal{F} \subseteq \mathcal{E}$. Allora $\mathbb{E}[X|\mathcal{F}]$ è una $\mathcal{F}$-variabile aleatoria tale che $\int_{F}^{}\mathbb{E}[X|\mathcal{F}] \; dP_{|\mathcal{F}} = \int_{F}^{}X dP$\\
+\\
+Se inoltre $\mathcal{F} = \sigma(Y) \implies \mathbb{E}[X|\mathcal{F}] = \mathbb{E}[X|\sigma(Y)] \equiv \mathbb{E}[X|Y]$
+
+\subsection*{Proposizione}
+Data una famiglia di eventi $\mathcal{F}, \; \exists (F_{n})_{n \in N} \; \; (N \subseteq \mathbb{N}) \; \;$ tale che $\mathcal{F} = \sigma((F_{n})_{n \in N})$. Dunque:
+\[ \mathbb{E}[X|\mathcal{F}] = \sum_{n \in N}^{} \mathbb{E}[X|F_{n}] \cdot \mathbf{1}_{F_{n}} \]
+
+\subsection*{Proposizione}
+Sia Y una variabile aleatoria discreta tale che $Y(\Omega) = (y_{n})_{n \in N} \; \; (N \subseteq \mathbb{N}) \; \; \implies \sigma(Y) = \sigma((Y=y_{n})_{n \in N})$. Dunque:
+\[ \mathbb{E}[X|Y] = \sum_{n \in N}^{} \mathbb{E}[X|Y=y_{n}] \cdot \mathbf{1}_{\{Y=y_{n}\}} \]
+
+\subsection*{Proprietà della speranza condizionata}
+1) Se X è una $\mathcal{F}$-variabile aleatoria $\implies \mathbb{E}[X|\mathcal{F}] = X$\\
+2) $\mathbb{E}[\mathbb{E}[X|\mathcal{F}]] = \mathbb{E}[X] \; \; \; \; \forall X \in \mathcal{L}^{1}(\Omega, \mathbb{R})$\\
+3) Siano $\mathcal{G}, \mathcal{F}$ due $\sigma$-algebre tali che $\mathcal{G} \subseteq \mathcal{F}$. Allora:
+\[ \mathbb{E}[\mathbb{E}[X|\mathcal{F}] \; | \; \mathcal{G}] = \mathbb{E}[\mathbb{E}[X|\mathcal{G}] \; | \; \mathcal{F}] = \mathbb{E}[X|\mathcal{G}] \]
+4) Se X è una variabile aleatoria indipendente dalla famiglia $\mathcal{F} \implies$\\ $\mathbb{E}[X|\mathcal{F}] = \mathbb{E}[X]$\\
+5) Se X, Y sono due variabili aleatorie indipendenti $\implies \mathbb{E}[X|Y] = \mathbb{E}[X]$\\
+6) Sia $\phi: \mathbb{R} \to \mathbb{R}$ una funzione convessa, con $\phi \circ X \in \mathcal{L}^{1}(\Omega, \mathbb{R})$. Allora:
+\[ \phi(\mathbb{E}[X|\mathcal{F}]) \leq \mathbb{E}[\phi(X)|\mathcal{F}] \]
+Caso particolare: $|\mathbb{E}[X|\mathcal{F}]|^{p} \leq \mathbb{E}[|X|^{p}|\mathcal{F}]$\\ \\
+7) $\mathbb{E}[|\mathbb{E}[X|\mathcal{F}]|^{p}] \leq \mathbb{E}[|X|^{p}] \; \; \; \; \forall X \in \mathcal{L}^{p}(\Omega, \mathbb{R})$\\
+Questa è una conseguenza delle proprietà 2 e 6.\\ \\
+8) $\mathbb{D}^{2}[\mathbb{E}[X|\mathcal{F}]] \leq \mathbb{D}^{2}[X] \; \; \; \; \forall X \in \mathcal{L}^{2}(\Omega, \mathbb{R})$\\
+9) Se X, $\mathcal{F}$ sono indipendenti $\implies \mathbb{D}^{2}[\mathbb{E}[X|\mathcal{F}]] = \mathbb{D}^{2}[\mathbb{E}[X]] = 0$\\
+10) Se $X \in \mathcal{L}^{2}(\Omega, \mathbb{R}) \implies \mathbb{E}[X|\mathcal{F}] = \min_{Y \in \mathcal{L}^{2}(\Omega_{\mathcal{F}}, \mathbb{R})}(\mathbb{E}[(X-Y)^{2}])$ , dove $\mathcal{L}^{2}(\Omega_{\mathcal{F}}, \mathbb{R}) \subseteq \mathcal{L}^{2}(\Omega, \mathbb{R})$ e $\mathcal{L}^{2}(\Omega_{\mathcal{F}}, \mathbb{R})$ è la proiezione ortogonale di $\mathcal{L}^{2}(\Omega, \mathbb{R})$.
+
+\subsection*{Proposizione}
+Se $(X,Y) \sim N(\mu, \Sigma^{2}) \implies$
+\[ \mathbb{E}[X|Y] = \mathbb{E}[X] + Corr(X,Y)\cdot \frac{\mathbb{D}[X]}{\mathbb{D}[Y]} \cdot (Y-\mathbb{E}[Y]) \]
+\[ \mathbb{E}[X^{2}|Y] = \mathbb{D}^{2}[X] - \frac{Cov(X,Y)}{\mathbb{D}^{2}[Y]} + \Big[\mathbb{E}[X] + \frac{Cov(X,Y)}{\mathbb{D}^{2}[Y]} \cdot (Y - \mathbb{E}[Y])\Big]^{2} \]
+dove:
+\[ Corr(X,Y) =
+\begin{cases}
+\frac{Cov(X,Y)}{\mathbb{D}[X] \mathbb{D}[Y]} \; \; \; \; se \; \mathbb{D}[X] \mathbb{D}[Y] > 0\\
+0 \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; \mathbb{D}[X] \mathbb{D}[Y] = 0
+\end{cases}
+\]
+
+\subsection*{Proposizione}
+Sia $\mathcal{N}$ una $\sigma$-algebra degli eventi, sia $N \in \mathcal{N}$ un evento e sia $P_{Y}: \mathcal{N} \to \mathbb{R}$ una funzione di probabilità. Allora, per il Teorema di Radon Nykodim, esistono una funzione $P_{Y}^{X}: \mathcal{N} \to \mathbb{R}$ e una funzione $dP_{Y}^{X}/dP_{Y}$ tali che:
+\[ P_{Y}^{X}(N) = \int_{N}^{}dP_{Y}^{X}/dP_{Y} \; dP_{Y} \]
+e possiamo definire $\mathbb{E}[X|Y=y] := dP_{Y}^{X}/dP_{Y}$.
+
+\subsection*{Proposizione}
+Siano X,Y due variabili aleatorie congiuntamente assolutamente continue. Allora $\mathbb{E}[X|Y=y]$ può essere definita nel seguente modo:
+\[ \mathbb{E}[X|Y=y] = \int_{\mathbb{R}}^{}x f_{X|Y}(x,y) \; d\mu_{L}(x) \; \; , \; \; \; \; dove \; \; f_{X|Y}(x,y) = \frac{f_{X,Y}(x,y)}{f_{Y}(y)} \]
+D'altra parte, $\mathbb{E}[h(X)|Y=y]$ è uguale a :
+\[ \mathbb{E}[h(X)|Y=y] = \int_{\mathbb{R}}^{}h(x) f_{X|Y}(x,y) \; d\mu_{L}(x) \]
+
+\section*{Successioni di variabili aleatorie}
+\subsection*{Convergenza quasi certa}
+Sia $(X_{n})_{n \geq 1} \; ($con $ X_{n}: \Omega \to \mathbb{R})$ una successione di variabili aleatorie. Allora:\\
+$X_{n} \xrightarrow[]{a.s.}X \; \; \; se \; \exists \; E \in \mathcal{E} \; t.c.\; P(E)=0 \; \wedge \; \forall \omega \in \Omega - E \; \; \lim_{n\to +\infty}X_{n}(\omega) = X(\omega)$
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{a.s.}X \; \wedge \; X_{n} \xrightarrow[]{a.s.}Y \implies X=Y \; a.s.$ , ovvero:
+\[ \exists \; E \in \mathcal{E} \; t.c. \; P(E)=0 \; \wedge \; \forall \omega \in \Omega - E \; \; X(\omega)=Y(\omega) \]
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{a.s.}X \; \wedge \; g: \mathbb{R}\to \mathbb{R}$ è una funzione \textbf{continua} $\implies g(X_{n}) \xrightarrow[]{a.s.}g(X)$
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{a.s.}X \; \wedge \; Y_{n} \xrightarrow[]{a.s.}Y \implies$
+\begin{itemize}
+\item $\alpha X_{n}+\beta  Y_{n} \xrightarrow[]{a.s.} \alpha X+\beta Y$
+\item $X_{n} Y_{n} \xrightarrow[]{a.s.}XY$
+\item $\frac{X_{n}}{Y_{n}} \xrightarrow[]{a.s.}\frac{X}{Y}$ (ma solo se $P(Y_{n}=0)=0 \; \wedge \; P(Y=0)=0$)
+\end{itemize}
+
+\subsection*{Teorema}
+$X_{n} \xrightarrow[]{a.s.}X \iff$
+\begin{itemize}
+\item $\lim_{m\to +\infty}P(\bigcap_{n\geq m}^{}\{|X_{n}-X|<\epsilon \}) = 1 \; \; \; \; \forall \epsilon \in \mathbb{R}^{+}$
+\item $\lim_{m\to +\infty}P(\bigcup_{n\geq m}^{}\{|X_{n}-X| \geq \epsilon \}) = 0 \; \; \; \; \forall \epsilon \in \mathbb{R}^{+}$
+\end{itemize}
+
+\subsection*{Convergenza in probabilità}
+Sia $(X_{n})_{n \geq 1} \; ($con $ X_{n}: \Omega \to \mathbb{R})$ una successione di variabili aleatorie. Allora:\\
+$X_{n} \xrightarrow[]{P}X \; \; \; se \; \forall \epsilon > 0$:
+\begin{itemize}
+\item $\lim_{n\to +\infty}P(\{|X_{n}-X|<\epsilon \}) = 1$
+\item $\lim_{n\to +\infty}P(\{|X_{n}-X|\geq \epsilon \}) = 0$
+\end{itemize}
+
+\subsection*{Proposizione}
+\[ X_{n} \xrightarrow[]{a.s.}X \implies X_{n} \xrightarrow[]{P}X \]
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{P}X \implies \; \exists$ sottosuccessione $(X_{nk})_{k\geq 1} \; t.c. \; X_{nk} \xrightarrow[]{a.s.}X$
+
+\subsection*{Teorema di Slutsky}
+Assumiamo che $X_{n} \xrightarrow[]{P}X$. Allora, per ogni funzione continua $g: \mathbb{R}\to \mathbb{R}$, abbiamo $g(X_{n}) \xrightarrow[]{P}g(X)$.
+
+\subsection*{Convergenza debole}
+Sia $(X_{n})_{n \geq 1} \; ($con $ X_{n}: \Omega_{n} \to \mathbb{R})$ una successione di variabili aleatorie, e siano $F_{Xn}: \mathbb{R}\to \mathbb{R}$ le corrispettive funzioni di distribuzione. Allora:\\
+$X_{n} \xrightarrow[]{W}X \; \; \; se \; \lim_{n\to +\infty}F_{Xn}(x) = F_{X}(x) \; \; \forall x: F_{X}$ è continua in $x$.
+
+\subsection*{Proposizione}
+\[ X_{n} \xrightarrow[]{P}X \implies X_{n} \xrightarrow[]{W}X \]
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{W}X \; \wedge \; X_{n} \xrightarrow[]{W}Y$ allora non è detto che $X=Y \; a.s.$
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{W}X \; \wedge \; g: \mathbb{R}\to \mathbb{R}$ è una funzione continua $\implies g(X_{n}) \xrightarrow[]{W}g(X)$
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{W}X \; \wedge \; Y_{n} \xrightarrow[]{W}Y \; \wedge \; X_{n}, Y_{n}$ sono variabili aleatorie \textbf{scorrelate} $\implies$
+\[ \alpha X_{n}+\beta  Y_{n} \xrightarrow[]{W} \alpha X+\beta Y \]
+
+\subsection*{Proposizione}
+Se le variabili aleatorie $X_{n}$ di una successione sono definite tutte sullo stesso spazio di probabilità $\Omega \; \wedge \; X_{n} \xrightarrow[]{W}X \; \wedge \; X \sim Dirac(x_{0}) \implies X_{n} \xrightarrow[]{P}X$
+
+\subsection*{Convergenza in media p-esima}
+Sia $(X_{n})_{n \geq 1} \; ($con $ X_{n}: \Omega \to \mathbb{R})$ una successione di variabili aleatorie tali che $X_{n} \in \mathcal{L}^{p}(\Omega; \mathbb{R})$ , con $p \geq 1$. Allora:\\
+$X_{n} \xrightarrow[]{\mathcal{L}^{p}}X \; \; \; se \; \mathbb{E}[|X_{n}-X|^{p}]^{\frac{1}{p}} \to 0$
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{\mathcal{L}^{p}}X \; \wedge \; X_{n} \xrightarrow[]{\mathcal{L}^{p}}Y \implies X=Y \; a.s.$
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{P}X \; \wedge \; \exists \; Y \; t.c. \; |X_{n}| \leq Y, \; \; Y \in \mathcal{L}^{p}(\Omega; \mathbb{R}) \implies$
+\begin{itemize}
+\item $X\in \mathcal{L}^{p}(\Omega; \mathbb{R})$
+\item $X_{n} \xrightarrow[]{\mathcal{L}^{p}}X$
+\end{itemize}
+
+\subsection*{Proposizione}
+Se $X_{n} \xrightarrow[]{\mathcal{L}^{p}}X \implies \; \exists$ sottosuccessione $(X_{nk})_{k\geq 1} \; t.c. \; X_{nk} \xrightarrow[]{a.s.}X$
+
+\subsection*{Proposizione}
+\[ X_{n} \xrightarrow[]{\mathcal{L}^{p}}X \implies X_{n} \xrightarrow[]{P}X \]
+---------------------------------------------------------------------------------------------------------\\
+\includegraphics{Screenshot_20}
+
+\section*{Media e varianza campionaria}
+Sia $X$ una variabile aleatoria e siano $X_{1}, X_{2},...,X_{n}$ alcuni suoi campioni (e.g. $X$ può rappresentare l'altezza e $X_{1}, X_{2},...,X_{n}$ sono le altezze rispettivamente delle persone 1, 2,..., n). Siano inoltre $\mu_{X} = \mathbb{E}[X]$ e $\sigma_{X}^{2} = \mathbb{D}^{2}[X]$.
+\begin{itemize}
+\item \textbf{Media campionaria:} $\overline{X}_{n} := \frac{1}{n} \sum_{k=1}^{n}X_{k}$\\
+$\mathbb{E}[\overline{X}_{n}] = \mu_{X}$\\
+$\mathbb{D}^{2}[\overline{X}_{n}] = \frac{\sigma_{X}^{2}}{n}$
+\item \textbf{Varianza campionaria non distorta:} $S_{n}^{2} := \frac{1}{n-1} \sum_{k=1}^{n}(X_{k} - \overline{X}_{n})^{2}$\\
+$\mathbb{E}[S_{n}^{2}] = \sigma_{X}^{2}$\\
+Se la curtosi $\hat{\mu}_{4}$ di X esiste finita $\implies \mathbb{D}^{2}[S_{n}^{2}] = \frac{\sigma_{X}^{4}}{n}\Big(\hat{\mu}_{4}-\frac{n-3}{n-1}\Big)$
+\item \textbf{Varianza campionaria distorta:} $\widetilde{S}_{n}^{2} := \frac{1}{n} \sum_{k=1}^{n}(X_{k} - \overline{X}_{n})^{2}$\\
+$\mathbb{E}[\widetilde{S}_{n}^{2}] = \frac{n-1}{n} \sigma_{X}^{2}$
+\item \textbf{Varianza campionaria sapendo $\mu_{X}$:} $S_{n}^{2}(\mu_{X}) := \frac{1}{n} \sum_{k=1}^{n}(X_{k} - \mu_{X})^{2}$\\
+$\mathbb{E}[S_{n}^{2}(\mu_{X})] = \sigma_{X}^{2}$\\
+Se la curtosi $\hat{\mu}_{4}$ di X esiste finita $\implies \mathbb{D}^{2}[S_{n}^{2}(\mu_{X})] = \frac{1}{n}(\hat{\mu}_{4} - \sigma_{X}^{4})$
+\end{itemize}
+
+\section*{Leggi dei grandi numeri}
+\subsection*{1° legge}
+Sia $(X_{n})_{n\geq 1}$ una successione di variabili aleatorie indipendenti e identicamente distribuite t.c. $X_{n} \sim Ber(p)$. Allora:
+\[ \overline{X}_{n} \xrightarrow[]{P}p \]
+
+\subsection*{2° legge}
+Sia $(X_{n})_{n\geq 1}$ una successione di variabili aleatorie che:
+\begin{itemize}
+\item Sono indipendenti.
+\item Ammettono momento di ordine 2 finito.
+\item Hanno tutte la stessa media $\mathbb{E}[X_{n}] = \mu$.
+\item Hanno una varianza pari a $\mathbb{D}^{2}[X_{n}] = \sigma_{n}^{2}$.
+\item Sono tali che $\lim_{n\to +\infty}\frac{1}{n^{2}} \sum_{k=1}^{n}\sigma_{k}^{2}=0$.
+\end{itemize}
+Allora:
+\[ \overline{X}_{n} \xrightarrow[]{P}\mu \]
+
+\subsection*{3° legge (Khintchine)}
+Sia $(X_{n})_{n\geq 1}$ una successione di variabili aleatorie che:
+\begin{itemize}
+\item Sono indipendenti e identicamente distribuite.
+\item Ammettono momento di ordine 1 finito.
+\item Hanno tutte la stessa media $\mathbb{E}[X_{n}] = \mu$.
+\end{itemize}
+Allora:
+\[ \overline{X}_{n} \xrightarrow[]{P}\mu \]
+
+\subsection*{4° legge}
+Sia $(X_{n})_{n\geq 1}$ una successione di variabili aleatorie che:
+\begin{itemize}
+\item Sono indipendenti.
+\item Ammettono momento di ordine 2 finito.
+\item Hanno tutte la stessa media $\mathbb{E}[X_{n}] = \mu$.
+\item Hanno una varianza pari a $\mathbb{D}^{2}[X_{n}] = \sigma_{n}^{2}$.
+\item Sono tali che $\sum_{n=1}^{+\infty}\frac{\sigma_{n}^{2}}{n^{2}} < +\infty$.
+\end{itemize}
+Allora:
+\[ \overline{X}_{n} \xrightarrow[]{a.s.}\mu \]
+
+\subsection*{5° legge (Kolmogorov)}
+Sia $(X_{n})_{n\geq 1}$ una successione di variabili aleatorie che:
+\begin{itemize}
+\item Sono indipendenti e identicamente distribuite.
+\item Ammettono momento di ordine 1 finito.
+\item Hanno tutte la stessa media $\mathbb{E}[X_{n}] = \mu$.
+\end{itemize}
+Allora:
+\[ \overline{X}_{n} \xrightarrow[]{a.s.}\mu \]
+
+\subsection*{6° legge}
+Sia $(X_{n})_{n\geq 1}$ una successione di variabili aleatorie che:
+\begin{itemize}
+\item Sono indipendenti e identicamente distribuite.
+\item Ammettono momento di ordine 2 finito.
+\item Hanno tutte media nulla.
+\item Hanno tutte la stessa varianza $\mathbb{D}^{2}[X_{n}] = \sigma^{2}$.
+\end{itemize}
+Allora:
+\[ \widetilde{S}_{n}^{2} \xrightarrow[]{a.s.}\sigma^{2} \; \; \; \; ; \; \; \; \; S_{n}^{2} \xrightarrow[]{a.s.}\sigma^{2} \]
+
+\subsection*{7° legge}
+Sia $(X_{n})_{n\geq 1}$ una successione di variabili aleatorie che:
+\begin{itemize}
+\item Sono scorrelate.
+\item Ammettono momento di ordine 2 finito.
+\item Hanno tutte la stessa media $\mathbb{E}[X_{n}] = \mu$.
+\item Sono tali che $\mathbb{D}^{2}[\overline{X}_{n}] \leq \Sigma$.
+\end{itemize}
+Allora:
+\[ \overline{X}_{n} \xrightarrow[]{\mathcal{L}^{2}}\mu \]
+
+\section*{Teorema del limite centrale}
+Sia $(X_{n})_{n\geq 1}$ una successione di variabili aleatorie che:
+\begin{itemize}
+\item Sono indipendenti e identicamente distribuite.
+\item Ammettono momento di ordine 2 finito.
+\item Hanno tutte la stessa media $\mathbb{E}[X_{n}] = \mu$.
+\item Hanno tutte la stessa varianza $\mathbb{D}^{2}[X_{n}] = \sigma^{2}$.
+\end{itemize}
+Sia inoltre $Z_{n} := \sum_{k=1}^{n}X_{k}$ il \textbf{random walk}, e sia $\widetilde{Z}_{n} := \frac{Z_{n}-n\mu}{\sigma \sqrt{n}}$ la sua standardizzazione. Allora:
+\[ \widetilde{Z}_{n} \xrightarrow[]{W}N(0,1) \]
+
+\section*{Simple random sample}
+\`E una successione $(X_{k})_{k=1}^{n}$ di variabili aleatorie indipendenti, estratte da una stessa variabile aleatoria X e, quindi, equamente distribuite ($X_{k} \sim X \; \forall k = 1,..,n)$.
+
+\section*{Statistica}
+\`E una qualunque funzione di Borel di un simple random sample ed è definita come:
+\[ G_{n}(\omega) := g(X_{1}(\omega),...,X_{n}(\omega)) \; \; \; \; \forall \omega \in \Omega \]
+
+\subsection*{Esempi di statistiche}
+\begin{itemize}
+\item Somma di variabili aleatorie ($Z_{n}$)\\
+$Se \; X \sim Ber(p) \implies Z_{n} \sim Bin(n,p)$\\
+$Se \; X \sim Poiss(\lambda) \implies Z_{n} \sim Poiss(n \lambda)$\\
+$Se \; X \sim N(\mu, \sigma^{2}) \implies Z_{n} \sim N(n\mu, n\sigma^{2})$\\
+$Se \; X \sim Exp(\lambda) \implies Z_{n} \sim \Gamma(n, \lambda) \implies Z_{n} \sim \frac{1}{2\lambda}\chi_{2n}^{2}$\\
+$Se \; X \sim \chi_{1}^{2} \implies Z_{n} \sim \chi_{n}^{2}$
+\item Media campionaria ($\overline{X}_{n}$)\\
+$Se \; X \sim N(\mu, \sigma^{2}) \implies \overline{X}_{n} \sim N(\mu, \frac{\sigma^{2}}{n})$
+\item Massimo tra variabili aleatorie ($\check{X}_{n}$)
+\item Minimo tra variabili aleatorie ($\hat{X}_{n}$)\\
+$Se \; X \sim Exp(\lambda) \implies \hat{X}_{n} \sim Exp(n\lambda)$
+\item Somma dei quadrati di variabili aleatorie ($Q_{n}$)\\
+$Se \; X \sim N(0,1) \implies Q_{n} \sim \chi_{n}^{2}$
+\item Varianza campionaria conoscendo la media ($S_{n}^{2}(\mu)$)
+\item Varianza campionaria non distorta ($S_{n}^{2}(X)$)
+\item Varianza campionaria distorta ($\widetilde{S}_{n}^{2}(X)$)
+\end{itemize}
+
+\subsection*{Teorema}
+Se $X \sim N(\mu, \sigma^{2}) \implies$ le statistiche $\overline{X}_{n}, \; S_{n}^{2}(X)$ sono indipendenti.
+
+\subsection*{Teorema}
+Se $X \sim N(\mu, \sigma^{2}) \implies (n-1) \frac{S_{n}^{2}(X)}{\sigma^{2}} \sim \chi_{n-1}^{2}$
+
+\subsection*{Teorema}
+Se $X \sim N(\mu, \sigma^{2}) \implies \frac{\overline{X}_{n} - \mu}{\frac{S_{n}}{\sqrt{n}}} \sim t_{n-1}$\\
+dove $t_{n-1}$ rappresenta una distribuzione di Student con n-1 gradi di libertà.
+
+\subsection*{Teorema}
+Se $X \sim N(\mu, \sigma^{2}) \implies \frac{\overline{X}_{n} - \mu}{\frac{\sigma}{\sqrt{n}}} \sim N(0,1)$
+
+\section*{Stima puntuale}
+Una statistica $G_{n}: \Omega \to \mathbb{R}^{n}$ è detta \textbf{stimatore puntuale} (che indicheremo anche con $\hat{\theta}_{n}$) del parametro ignoto $\theta$ se possiamo sfruttare le realizzazioni $G_{n}(\omega)$ di $G_{n}$ per stimare il valore vero di $\theta$.\\
+Data una qualunque realizzazione $x_{1},...,x_{n}$ del campione $X_{1},...,X_{n}$ (dove $x_{k} = X_{k}(\omega)$), per qualche $\omega \in \Omega$ e per ogni $k=1,...,n$, il numero reale
+\[ G_{n}(\omega) := g(X_{1}(\omega),...,X_{n}(\omega)) \equiv g(x_{1},...,x_{n}) \]
+è chiamato \textbf{stima puntuale} di $\theta$ (che indicheremo anche con $\hat{\theta}_{n}(\omega)$).
+
+\section*{Errore quadratico medio}
+\[ \textbf{MSE}(\hat{\theta}_{n}) := \mathbb{E}[(\hat{\theta}_{n} - \theta)^{2}] \]
+
+\section*{Distorsione}
+\[ \textbf{Bias}(\hat{\theta}_{n}) := \mathbb{E}[\hat{\theta}_{n}] - \theta \]
+
+\subsection*{Proposizione}
+\[ \textbf{MSE}(\hat{\theta}_{n}) = \mathbb{D}^{2}[\hat{\theta}_{n}] + \textbf{Bias}^{2}(\hat{\theta}_{n}) \]
+
+\section*{Errore standard}
+\[ \textbf{SE}(\hat{\theta}_{n}) := \sqrt{\mathbb{D}^{2}[\hat{\theta}_{n}]} \]
+
+\section*{Consistenza di uno stimatore puntuale}
+\subsection*{Definizione}
+Uno stimatore puntuale $\hat{\theta}_{n}$ di $\theta$ è (asintoticamente) \textbf{consistente in probabilità} se $\hat{\theta}_{n} \xrightarrow[]{P} \theta$   per $n \to +\infty$.
+
+\subsection*{Definizione}
+Uno stimatore puntuale $\hat{\theta}_{n}$ di $\theta$ è (asintoticamente) \textbf{consistente in media quadratica} se $\hat{\theta}_{n} \xrightarrow[]{\mathcal{L}^{2}} \theta$   per $n \to +\infty$.
+
+\subsection*{Proposizione}
+Se uno stimatore $\hat{\theta}_{n}$ corretto ($\equiv$ non distorto) di $\theta$ è consistente in media quadratica, allora è consistente anche in probabilità.
+
+\section*{Valore critico inferiore}
+Dato $\alpha \in (0,1)$, chiamiamo valore critico inferiore di livello $\alpha$ della variabile aleatoria X e denotiamo con $x_{\alpha}^{-}$ il minimo $\alpha$-quantile di X. In simboli: $x_{\alpha}^{-} := \check{x}_{\alpha}$
+
+\section*{Valore critico superiore}
+Dato $\alpha \in (0,1)$, chiamiamo valore critico superiore di livello $\alpha$ della variabile aleatoria X e denotiamo con $x_{\alpha}^{+}$ il massimo $(1-\alpha)$-quantile di X. In simboli: $x_{\alpha}^{+} := \hat{x}_{1-\alpha}$
+
+\section*{Limite inferiore di confidenza}
+Dato $\alpha \in (0,1)$, diciamo che una statistica $\underline{\theta}: \Omega \to \mathbb{R}$ è un limite inferiore di confidenza al livello di confidenza $1-\alpha$ per il parametro vero $\theta$ se abbiamo:
+\[ P(\underline{\theta} \leq \theta) \geq 1-\alpha \; \; \; \; \forall \theta \in \Theta \]
+Inoltre, qualunque valore $\underline{\theta}(\omega) \in \mathbb{R}$ preso dalla statistica $\underline{\theta}$ all'occorrenza di un sample point $\omega \in \Omega$ è detto \textbf{realizzazione del limite inferiore di confidenza} $\underline{\theta}$.
+
+\section*{Limite superiore di confidenza}
+Dato $\alpha \in (0,1)$, diciamo che una statistica $\overline{\theta}: \Omega \to \mathbb{R}$ è un limite superiore di confidenza al livello di confidenza $1-\alpha$ per il parametro vero $\theta$ se abbiamo:
+\[ P(\overline{\theta} \geq \theta) \geq 1-\alpha \; \; \; \; \forall \theta \in \Theta \]
+Inoltre, qualunque valore $\overline{\theta}(\omega) \in \mathbb{R}$ preso dalla statistica $\overline{\theta}$ all'occorrenza di un sample point $\omega \in \Omega$ è detto \textbf{realizzazione del limite superiore di confidenza} $\overline{\theta}$.
+
+\section*{Intervallo di confidenza}
+Dato $\alpha \in (0,1)$, diciamo che due statistiche $\phi: \Omega \to \mathbb{R}$ e $\psi: \Omega \to \mathbb{R}$ costituiscono un intervallo di confidenza $(\phi, \psi)$ al livello di confidenza $1-\alpha$ per il parametro vero $\theta$ se abbiamo:
+\[ P(\phi \leq \theta \leq \psi) \geq 1-\alpha \; \; \; \; \forall \theta \in \Theta \]
+Inoltre, qualunque intervallo $(\phi(\omega), \psi(\omega)) \subseteq \mathbb{R}$, dove $\phi(\omega), \psi(\omega)$ sono i valori presi da $\phi$ e $\psi$ all'occorrenza di un sample point $\omega \in \Omega$, è detto \textbf{realizzazione dell'intervallo di confidenza} per $\theta$.
+
+\subsection*{Proposizione}
+Dato $\alpha \in (0,1)$, siano $\underline{\theta}: \Omega \to \mathbb{R}$ e $\overline{\theta}: \Omega \to \mathbb{R}$ rispettivamente il limite inferiore di confidenza e il limite superiore di confidenza al livello di confidenza $1-\frac{\alpha}{2}$ per il parametro vero $\theta$. Allora la coppia $(\underline{\theta}, \overline{\theta})$ costituisce un intervallo di confidenza al livello di confidenza $1-\alpha$ per il parametro vero $\theta$.
+
+\subsection*{Ampiezza di $(\phi, \psi)$}
+\`E la statistica $\psi-\phi$.
+
+\subsection*{Precisione di $(\phi, \psi)$}
+\`E il numero reale $\frac{1}{\mathbb{E}[\psi-\phi]}$.
+
+\section*{Intervalli di confidenza per la media di una popolazione}
+\subsection*{Proposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ nota. Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza $1-\alpha$ per il parametro $\mu$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{n} - z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{n} + z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}} \]
+dove $z_{\frac{\alpha}{2}} \equiv z_{\frac{\alpha}{2}}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria gaussiana.
+
+\subsection*{Proposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ ignota. Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza $1-\alpha$ per il parametro $\mu$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{n} - t_{\frac{\alpha}{2},n-1}\frac{S_{n}}{\sqrt{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{n} + t_{\frac{\alpha}{2},n-1}\frac{S_{n}}{\sqrt{n}} \]
+dove $t_{\frac{\alpha}{2},n-1} \equiv t_{\frac{\alpha}{2},n-1}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria di Student con n-1 gradi di libertà.
+
+\subsection*{Proposizione}
+Sia X una variabile aleatoria con distribuzione ignota ma con momento di ordine 4 finito. Assumiamo inoltre che la dimensione n del campione $X_{1},...,X_{n}$ sia grande ($n>40$). Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza approssimativamente $1-\alpha$ per il parametro $\mu$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{n} - z_{\frac{\alpha}{2}}\frac{S_{n}}{\sqrt{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{n} + z_{\frac{\alpha}{2}}\frac{S_{n}}{\sqrt{n}} \]
+dove $z_{\frac{\alpha}{2}} \equiv z_{\frac{\alpha}{2}}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria gaussiana.
+
+\subsection*{Proposizione}
+Sia X una variabile aleatoria bernoulliana con parametro di successo p ignoto. Assumiamo inoltre che la dimensione n del campione $X_{1},...,X_{n}$ sia grande ($n>40$). Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza approssimativamente $1-\alpha$ per il parametro p è dato dalle seguenti statistiche:
+\[ \frac{\overline{X}_{n} + \frac{z_{\frac{\alpha}{2}}^{2}}{2n} - z_{\frac{\alpha}{2}}\sqrt{\frac{1}{n}\overline{X}_{n}(1-\overline{X}_{n}) + \frac{z_{\frac{\alpha}{2}}^{2}}{4n^{2}}}}{1+\frac{z_{\frac{\alpha}{2}}^{2}}{n}} \; \; \; \; ; \; \; \; \; \frac{\overline{X}_{n} + \frac{z_{\frac{\alpha}{2}}^{2}}{2n} + z_{\frac{\alpha}{2}}\sqrt{\frac{1}{n}\overline{X}_{n}(1-\overline{X}_{n}) + \frac{z_{\frac{\alpha}{2}}^{2}}{4n^{2}}}}{1+\frac{z_{\frac{\alpha}{2}}^{2}}{n}} \]
+dove $z_{\frac{\alpha}{2}} \equiv z_{\frac{\alpha}{2}}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria gaussiana.
+
+\section*{Intervalli di confidenza per la varianza di una popolazione}
+\subsection*{Proposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ ignota. Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza $1-\alpha$ per il parametro $\sigma^{2}$ è dato dalle seguenti statistiche:
+\[ \frac{(n-1)S_{X,n}^{2}}{\chi_{n-1,\frac{\alpha}{2}}^{2,+}} \; \; \; \; ; \; \; \; \; \frac{(n-1)S_{X,n}^{2}}{\chi_{n-1,\frac{\alpha}{2}}^{2,-}} \]
+dove $\chi_{n-1,\frac{\alpha}{2}}^{2,-}$ è il valore critico inferiore di livello $\frac{\alpha}{2}$ di $\chi_{n-1}^{2}$, mentre $\chi_{n-1,\frac{\alpha}{2}}^{2,+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ di $\chi_{n-1}^{2}$.
+
+\subsection*{Proposizione}
+Sia X una variabile aleatoria qualsiasi con momento di ordine 4 finito. Assumiamo inoltre che la dimensione n del campione $X_{1},...,X_{n}$ sia grande ($n>40$). Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza approssimativamente $1-\alpha$ per il parametro $\sigma^{2}$ è dato dalle seguenti statistiche:
+\[ \frac{S_{X,n}^{2}}{1-z_{\frac{\alpha}{2}}\sqrt{\frac{1}{n}(\widetilde{Kurt}_{X,n}-1)}} \; \; \; \; ; \; \; \; \; \frac{S_{X,n}^{2}}{1+z_{\frac{\alpha}{2}}\sqrt{\frac{1}{n}(\widetilde{Kurt}_{X,n}-1)}} \]
+dove $z_{\frac{\alpha}{2}} \equiv z_{\frac{\alpha}{2}}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ di $N(0,1)$ e $\widetilde{Kurt}_{X,n}$ è lo stimatore distorto della curtosi standardizzata di X.
+
+\section*{Intervalli di confidenza per la differenza tra le medie di due popolazioni}
+\subsection*{Proposizione}
+Siano X,Y due variabili aleatorie gaussiane con varianze $\sigma_{X}^{2}, \sigma_{Y}^{2}$ note. Assumiamo inoltre che i campioni $X_{1},..,X_{m}$ e $Y_{1},...,Y_{n}$ siano indipendenti. Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza $1-\alpha$ per la differenza $\mu_{X}-\mu_{Y}$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{m} - \overline{Y}_{n} - z_{\frac{\alpha}{2}}\sqrt{\frac{\sigma_{X}^{2}}{m}+\frac{\sigma_{Y}^{2}}{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{m} - \overline{Y}_{n} + z_{\frac{\alpha}{2}}\sqrt{\frac{\sigma_{X}^{2}}{m}+\frac{\sigma_{Y}^{2}}{n}} \]
+dove $z_{\frac{\alpha}{2}} \equiv z_{\frac{\alpha}{2}}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria gaussiana.
+
+\subsection*{Proposizione}
+Siano X,Y due variabili aleatorie gaussiane con la stessa varianza $\sigma^{2}$ ignota. Assumiamo inoltre che i campioni $X_{1},..,X_{m}$ e $Y_{1},...,Y_{n}$ siano indipendenti. Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza $1-\alpha$ per la differenza $\mu_{X}-\mu_{Y}$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{m} - \overline{Y}_{n} - t_{\frac{\alpha}{2},m+n-2}\sqrt{S_{p}^{2} \Big(\frac{1}{m}+\frac{1}{n} \Big)} \; \; \; \; ; \; \; \; \; \overline{X}_{m} - \overline{Y}_{n} + t_{\frac{\alpha}{2},m+n-2}\sqrt{S_{p}^{2} \Big(\frac{1}{m}+\frac{1}{n} \Big)} \]
+dove $t_{\frac{\alpha}{2},m+n-2} \equiv t_{\frac{\alpha}{2},m+n-2}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria di Student con m+n-2 gradi di libertà e $S_{p}^{2}$ è la \textbf{pooled sample variance} che è data da:
+\[ S_{p}^{2} = \frac{(m-1)S_{X,m}^{2} + (n-1)S_{Y,n}^{2}}{m+n-2} \]
+
+\subsection*{Proposizione}
+Siano X,Y due variabili aleatorie gaussiane con varianze $\sigma_{X}^{2}, \sigma_{Y}^{2}$ differenti e ignote. Assumiamo inoltre che i campioni $X_{1},..,X_{m}$ e $Y_{1},...,Y_{n}$ siano indipendenti. Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza approssimativamente $1-\alpha$ per la differenza $\mu_{X}-\mu_{Y}$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{m} - \overline{Y}_{n} - t_{\frac{\alpha}{2},\hat{\nu}}\sqrt{\frac{S_{X,m}^{2}}{m}+\frac{S_{Y,n}^{2}}{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{m} - \overline{Y}_{n} + t_{\frac{\alpha}{2},\hat{\nu}}\sqrt{\frac{S_{X,m}^{2}}{m}+\frac{S_{Y,n}^{2}}{n}} \]
+dove $t_{\frac{\alpha}{2},\hat{\nu}} \equiv t_{\frac{\alpha}{2},\hat{\nu}}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria di Student con $\hat{\nu}$ gradi di libertà, dove:
+\[ \hat{\nu} = \Bigg \lfloor \frac{\Big( \frac{s_{X,m}^{2}}{m} + \frac{s_{Y,n}^{2}}{n} \Big)^{2}}{\frac{s_{X,m}^{4}}{(m-1)m^{2}} + \frac{s_{Y,n}^{4}}{(n-1)n^{2}}} \Bigg \rfloor \]
+
+\subsection*{Proposizione}
+Siano X,Y due variabili aleatorie qualsiasi con momenti di ordine 2 finiti. Assumiamo inoltre che i campioni $X_{1},..,X_{m}$ e $Y_{1},...,Y_{n}$ siano indipendenti e che le dimensioni m,n di entrambi i campioni siano grandi ($m>40, \; n>40$). Allora, fissato $\alpha \in (0,1)$, l'intervallo di confidenza con livello di confidenza approssimativamente $1-\alpha$ per la differenza $\mu_{X}-\mu_{Y}$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{m} - \overline{Y}_{n} - z_{\frac{\alpha}{2}}\sqrt{\frac{S_{X,m}^{2}}{m}+\frac{S_{Y,n}^{2}}{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{m} - \overline{Y}_{n} + z_{\frac{\alpha}{2}}\sqrt{\frac{S_{X,m}^{2}}{m}+\frac{S_{Y,n}^{2}}{n}} \]
+dove $z_{\frac{\alpha}{2}} \equiv z_{\frac{\alpha}{2}}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria gaussiana.
+
+\section*{Intervalli di predizione}
+\subsection*{Proposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ nota. Allora, fissato $\alpha \in (0,1)$, l'intervallo di predizione con livello di confidenza $1-\alpha$ per il campione $X_{n+1}$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{n} - z_{\frac{\alpha}{2}} \sigma \sqrt{1 + \frac{1}{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{n} + z_{\frac{\alpha}{2}} \sigma \sqrt{1 + \frac{1}{n}} \]
+dove $z_{\frac{\alpha}{2}} \equiv z_{\frac{\alpha}{2}}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria gaussiana.
+
+\subsection*{Proposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ ignota. Allora, fissato $\alpha \in (0,1)$, l'intervallo di predizione con livello di confidenza $1-\alpha$ per il campione $X_{n+1}$ è dato dalle seguenti statistiche:
+\[ \overline{X}_{n} - t_{\frac{\alpha}{2},n-1} S_{X,n} \sqrt{1 + \frac{1}{n}} \; \; \; \; ; \; \; \; \; \overline{X}_{n} + t_{\frac{\alpha}{2},n-1} S_{X,n} \sqrt{1 + \frac{1}{n}} \]
+dove $t_{\frac{\alpha}{2},n-1} \equiv t_{\frac{\alpha}{2},n-1}^{+}$ è il valore critico superiore di livello $\frac{\alpha}{2}$ della variabile aleatoria di Student con n-1 gradi di libertà.
+
+\section*{Test d'ipotesi}
+\subsection*{Definizione}
+L'\textbf{ipotesi nulla}, comunemente denotata con $H_{0}$, è l'affermazione riguardante un parametro $\theta$ di una variabile aleatoria X (come $\theta = \theta_{0}$) che inizialmente è assunta essere vera.\\
+L'\textbf{ipotesi alternativa}, che contraddice l'ipotesi nulla, è solitamente denotata con $H_{1}$ oppure $H_{\alpha}$; può essere espressa in uno dei seguenti tre modi:
+\begin{itemize}
+\item $\theta \neq \theta_{0}$
+\item $\theta > \theta_{0}$
+\item $\theta < \theta_{0}$
+\end{itemize}
+
+\subsection*{Definizione}
+Si ha un \textbf{errore del I tipo} se viene rigettata l'ipotesi nulla $H_{0}$ quando essa in realtà è vera, e si ha che:
+\[ \alpha := P(rigetto \;  H_{0} \; | \; H_{0} \; vera) \]
+
+\subsection*{Definizione}
+Si ha un \textbf{errore del II tipo} se viene accettata l'ipotesi nulla $H_{0}$ quando essa in realtà è falsa, e si ha che:
+\[ \beta := P(accetto \;  H_{0} \; | \; H_{0} \; falsa) \]
+
+\section*{Test d'ipotesi per la media di una popolazione}
+\subsection*{Posposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ nota.\\
+Effettuiamo l'ipotesi nulla $H_{0}: \mu = \mu_{0}$ e consideriamo l'ipotesi alternativa $H_{1}$.\\
+La statistica che interviene è:
+\[ Z_{0} = \frac{\overline{X}_{n} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} \]
+Nell'ipotesi che $H_{0}$ sia vera, tale statistica ha una distribuzione gaussiana con media 0 e varianza 1.\\
+Allora, fissato $\alpha \in (0,1)$, abbiamo che:
+\[ \alpha = P(rigetto \;  H_{0} \; | \; H_{0} \; vera) =
+\begin{cases}
+P(Z_{0} < z_{\alpha}^{-}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu < \mu_{0}\\
+P(Z_{0} > z_{\alpha}^{+}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu > \mu_{0}\\
+P(Z_{0} < z_{\frac{\alpha}{2}}^{-}) + P(Z_{0} > z_{\frac{\alpha}{2}}^{+}) \; \; \; \; se \; H_{1}: \mu \neq \mu_{0}
+\end{cases}
+\]
+Dopodiché, fissato $\mu_{1} \neq \mu_{0}$, la probabilità di commettere un errore del II tipo è in funzione di $\mu_{1}$ ed è data da:
+\[ \beta(\mu_{1}) = P(accetto \;  H_{0} \; | \; \mu = \mu_{1}) =
+\begin{cases}
+1 - P\Big(Z_{1} \leq z_{\alpha}^{-} - \frac{\mu_{1}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}}\Big) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu < \mu_{0}\\
+P\Big(Z_{1} \leq z_{\alpha}^{+} - \frac{\mu_{1}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}}\Big) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu > \mu_{0}\\
+P\Big(Z_{1} \leq z_{\frac{\alpha}{2}}^{+} - \frac{\mu_{1}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}}\Big) - P\Big(Z_{1} \leq z_{\frac{\alpha}{2}}^{-} - \frac{\mu_{1}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}}\Big) \; \; \; \; se \; H_{1}: \mu \neq \mu_{0}
+\end{cases}
+\]
+Qui la statistica che è intervenuta è:
+\[ Z_{1} = \frac{\overline{X}_{n} - \mu_{1}}{\frac{\sigma}{\sqrt{n}}} \]
+Nell'ipotesi che $\mu = \mu_{1}$, tale statistica ha una distribuzione gaussiana con media 0 e varianza 1.
+
+\subsection*{Proposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ ignota.\\
+Effettuiamo l'ipotesi nulla $H_{0}: \mu = \mu_{0}$ e consideriamo l'ipotesi alternativa $H_{1}$.\\
+La statistica che interviene è:
+\[ T_{n-1}^{(0)} = \frac{\overline{X}_{n} - \mu_{0}}{\frac{S_{n}}{\sqrt{n}}} \]
+Nell'ipotesi che $H_{0}$ sia vera, tale statistica ha una distribuzione di Student con n-1 gradi di libertà.\\
+Allora, fissato $\alpha \in (0,1)$, abbiamo che:
+\[ \alpha = P(rigetto \;  H_{0} \; | \; H_{0} \; vera) =
+\begin{cases}
+P(T_{n-1}^{(0)} < t_{n-1,\alpha}^{-}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu < \mu_{0}\\
+P(T_{n-1}^{(0)} > t_{n-1,\alpha}^{+}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu > \mu_{0}\\
+P(T_{n-1}^{(0)} < t_{n-1,\frac{\alpha}{2}}^{-}) + P(T_{n-1}^{(0)} > t_{n-1,\frac{\alpha}{2}}^{+}) \; \; \; \; se \; H_{1}: \mu \neq \mu_{0}
+\end{cases}
+\]
+Dopodiché, fissato $\mu_{1} \neq \mu_{0}$, la probabilità di commettere un errore del II tipo è in funzione di $n$ e di $d$ (dove $d := \frac{\mu_{1}-\mu_{0}}{\sigma}$) ed è data da:
+\[ \beta(n,d) = P(accetto \;  H_{0} \; | \; \mu = \mu_{1}) = \]
+\[
+\begin{cases}
+1 - P(T_{n-1}^{(0)} \leq t_{n-1,\alpha}^{-} \; | \; \mu=\mu_{1}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu < \mu_{0}\\
+P(T_{n-1}^{(0)} \leq t_{n-1,\alpha}^{+} \; | \; \mu=\mu_{1}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu > \mu_{0}\\
+P(T_{n-1}^{(0)} \leq t_{n-1,\frac{\alpha}{2}}^{+} \; | \; \mu=\mu_{1}) - P(T_{n-1}^{(0)} \leq t_{n-1,\frac{\alpha}{2}}^{-} \; | \; \mu=\mu_{1}) \; \; \; \; se \; H_{1}: \mu \neq \mu_{0}
+\end{cases}
+\]
+
+\subsection*{Proposizione}
+Sia X una variabile aleatoria con distribuzione e varianza $\sigma^{2}$ ignote, e supponiamo di avere un campione $X_{1},...,X_{n}$ di dimensioni elevate.\\
+Effettuiamo l'ipotesi nulla $H_{0}: \mu = \mu_{0}$ e consideriamo l'ipotesi alternativa $H_{1}$.\\
+La statistica che interviene è:
+\[ \widetilde{Z}_{0} = \frac{\overline{X}_{n} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} \]
+Nelle ipotesi che $H_{0}$ sia vera e che n sia sufficientemente elevato, tale statistica ha una distribuzione approssimativamente gaussiana con media 0 e varianza 1. Di conseguenza, si applicano approssimativamente i risultati della prima proposizione.
+
+\subsection*{Proposizione}
+Sia X una variabile aleatoria bernoulliana con parametro di successo p ignoto, e supponiamo di avere un campione $X_{1},...,X_{n}$ di dimensioni elevate.\\
+Effettuiamo l'ipotesi nulla $H_{0}: p = p_{0}$ e consideriamo l'ipotesi alternativa $H_{1}$.\\
+Nell'ipotesi che n sia sufficientemente elevato, la sample sum $Z_{n}$ (che è per natura una variabile aleatoria binomiale) ha una distribuzione approssimativamente gaussiana con media $\mu_{Zn} = np$ e varianza $\sigma_{Zn}^{2} = np(1-p)$.\\
+Perciò, la sample mean $\overline{X}_{n} = \frac{1}{n}Z_{n}$ ha una distribuzione approssimativamente gaussiana con media $\mu_{\overline{X}n} = p$ e varianza $\sigma_{\overline{X}n}^{2} = \frac{p(1-p)}{n}$.\\
+In definitiva, la statistica che interviene è:
+\[ Z_{0} = \frac{\overline{X}_{n}-p_{0}}{\sqrt{\frac{p_{0}(1-p_{0})}{n}}} \]
+Nell'ipotesi che $H_{0}$ sia vera, tale statistica ha una distribuzione approssimativamente gaussiana con media 0 e varianza 1. Di conseguenza, per quanto riguarda l'errore del I tipo, si applicano approssimativamente i risultati della prima proposizione.\\
+\\
+Dopodiché, fissato $p_{1} \neq p_{0}$, la probabilità di commettere un errore del II tipo è in funzione di $p_{1}$ ed è data da:
+\[ \beta(p_{1}) = P(accetto \;  H_{0} \; | \; p = p_{1}) = \]
+\[
+\begin{cases}
+1 - P\Bigg(Z_{1} \leq \frac{p_{0} - p_{1} + z_{\alpha}^{-} \sqrt{\frac{p_{0}(1-p_{0})}{n}}}{\sqrt{\frac{p_{1}(1-p_{1})}{n}}}\Bigg) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu < \mu_{0}\\
+P\Bigg(Z_{1} \leq \frac{p_{0} - p_{1} + z_{\alpha}^{+} \sqrt{\frac{p_{0}(1-p_{0})}{n}}}{\sqrt{\frac{p_{1}(1-p_{1})}{n}}}\Bigg) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \mu > \mu_{0}\\
+P\Bigg(Z_{1} \leq \frac{p_{0} - p_{1} + z_{\frac{\alpha}{2}}^{+} \sqrt{\frac{p_{0}(1-p_{0})}{n}}}{\sqrt{\frac{p_{1}(1-p_{1})}{n}}}\Bigg) - P\Bigg(Z_{1} \leq \frac{p_{0} - p_{1} + z_{\frac{\alpha}{2}}^{-} \sqrt{\frac{p_{0}(1-p_{0})}{n}}}{\sqrt{\frac{p_{1}(1-p_{1})}{n}}}\Bigg) \; \; \; \; se \; H_{1}: \mu \neq \mu_{0}
+\end{cases}
+\]
+Qui la statistica che è intervenuta è:
+\[ Z_{1} = \frac{\overline{X}_{n} - p_{1}}{\sqrt{\frac{p_{0}(1-p_{0})}{n}}} \]
+Nelle ipotesi che $p = p_{1}$ e che n sia sufficientemente elevato, tale statistica ha una distribuzione approssimativamente gaussiana con media 0 e varianza 1.
+
+\section*{Test d'ipotesi per la varianza di una popolazione}
+\subsection*{Posposizione}
+Sia X una variabile aleatoria gaussiana con varianza $\sigma^{2}$ ignota.\\
+Effettuiamo l'ipotesi nulla $H_{0}: \sigma^{2} = \sigma^{2}_{0}$ e consideriamo l'ipotesi alternativa $H_{1}$.\\
+La statistica che interviene è:
+\[ X_{n-1}^{2} = \frac{(n-1)S_{n}^{2}}{\sigma_{0}^{2}} \]
+Nell'ipotesi che $H_{0}$ sia vera, tale statistica ha una distribuzione di chi-quadro con n-1 gradi di libertà.\\
+Allora, fissato $\alpha \in (0,1)$, abbiamo che:
+\[ \alpha = P(rigetto \;  H_{0} \; | \; H_{0} \; vera) =
+\begin{cases}
+P(X_{n-1}^{2} < \chi_{n-1,\alpha}^{2,-}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \sigma^{2} < \sigma^{2}_{0}\\
+P(X_{n-1}^{2} > \chi_{n-1,\alpha}^{2,+}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \sigma^{2} > \sigma^{2}_{0}\\
+P(X_{n-1}^{2} < \chi_{n-1,\frac{\alpha}{2}}^{2,-}) + P(X_{n-1}^{2} > \chi_{n-1,\frac{\alpha}{2}}^{2,+}) \; \; \; \; se \; H_{1}: \sigma^{2} \neq \sigma^{2}_{0}
+\end{cases}
+\]
+
+\section*{Proposizione}
+Sia X una variabile aleatoria qualunque con  varianza $\sigma^{2}$ ignota e con momento di ordine 4 finito, e supponiamo di avere un campione $X_{1},...,X_{n}$ di dimensioni elevate.\\
+Effettuiamo l'ipotesi nulla $H_{0}: \sigma^{2} = \sigma^{2}_{0}$ e consideriamo l'ipotesi alternativa $H_{1}$.\\
+La statistica che interviene è:
+\[ Z_{0} = \frac{S_{n}^{2}-\sigma_{0}^{2}}{\sqrt{\Big(\frac{1}{n} \sum_{k=1}^{n}(X_{k}-\overline{X}_{n})^{4}-\sigma_{0}^{4} \Big) \frac{1}{n}}} \]
+Nelle ipotesi che $\sigma^{2} = \sigma_{0}^{2}$ e che n sia sufficientemente elevato, tale statistica ha una distribuzione approssimativamente gaussiana con media 0 e varianza 1.
+Allora, fissato $\alpha \in (0,1)$, abbiamo che:
+\[ \alpha = P(rigetto \;  H_{0} \; | \; H_{0} \; vera) =
+\begin{cases}
+P(Z_{0} < z_{\alpha}^{-}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \sigma^{2} < \sigma^{2}_{0}\\
+P(Z_{0} > z_{\alpha}^{+}) \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; se \; H_{1}: \sigma^{2} > \sigma^{2}_{0}\\
+P(Z_{0} < z_{\frac{\alpha}{2}}^{-}) + P(Z_{0} > z_{\frac{\alpha}{2}}^{+}) \; \; \; \; se \; H_{1}: \sigma^{2} \neq \sigma^{2}_{0}
+\end{cases}
+\]
+
+\section*{Cose extra da ricordare}
+1) Funzione di distribuzione della variabile aleatoria gaussiana:
+\[ F_{X}(x) = \frac{1}{2}\Big[1+erf\Big(\frac{x-\mu}{\sigma \sqrt{2}}\Big)\Big] \]
+dove:
+\[ erf(x) := \frac{2}{\sqrt{\pi}}\int_{0}^{x}e^{-t^{2}} \; dt \]
+
+2)
+\[ \int_{-\infty}^{+\infty} e^{- \frac{(x-\mu)^{2}}{\sigma}} \; dx = \sqrt{\sigma \pi} \; \; \; \; \; dove \; \sigma>0 \]
+
+3)
+\[ \int_{-\infty}^{+\infty} e^{-bx^{2}+cx+d} \; dx = \sqrt{\frac{\pi}{b}} \cdot e^{\frac{c^{2}}{4b}+d} \; \; \; \; \; dove \; b>0 \]
+
+\end{document}
